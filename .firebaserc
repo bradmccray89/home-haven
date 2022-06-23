@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "homehaven-aed65": {
+      "hosting": {
+        "home-haven": [
+          "homehaven-aed65"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "homehaven-aed65"
+  }
+}
