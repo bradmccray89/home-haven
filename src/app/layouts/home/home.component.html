@@ -1,6 +1,11 @@
-<div class="h-screen w-screen flex flex-col">
-  <app-home-nav class="flex-grow-0"></app-home-nav>
-  <router-outlet
-    class="h-full w-full flex-grow bg-slate-100 dark:bg-slate-500"
-  ></router-outlet>
+<div class="h-screen w-screen flex flex-col relative">
+  <app-home-nav
+    class="flex-grow-0"
+    [currentUserProfile]="currentUserProfile"
+  ></app-home-nav>
+  <div
+    class="flex-grow bg-neutral-100 dark:bg-zinc-800 transition-colors duration-500 ease-in-out"
+  >
+    <router-outlet></router-outlet>
+  </div>
 </div>

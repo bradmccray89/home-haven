@@ -1,7 +1,7 @@
 import { ThemeService } from './../../services/theme.service';
 import { ToastrService } from 'ngx-toastr';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
@@ -12,12 +12,14 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('fade', [
       transition(':enter', [
@@ -37,7 +39,7 @@ import { Observable } from 'rxjs';
     ]),
   ],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
   public faEye = faEye;
   public faEyeSlash = faEyeSlash;
   public email = new FormControl('', [Validators.required, Validators.email]);
@@ -52,22 +54,40 @@ export class LoginComponent {
   public isDarkTheme: Observable<boolean> = this.themeService.isDarkTheme;
   public faSun = faSun;
   public faMoon = faMoon;
+  public authSubscribe: Subscription | undefined;
 
   constructor(
     private auth: AngularFireAuth,
     private toastr: ToastrService,
     private router: Router,
     private themeService: ThemeService,
-    private titleService: Title
+    private titleService: Title,
+    private userService: UserService
   ) {
     this.titleService.setTitle('Login | HomeHaven');
+  }
+
+  ngOnInit(): void {
+    this.authSubscribe = this.auth.authState.subscribe((user) => {
+      if (user && user.metadata.lastSignInTime) {
+        this.auth.signOut();
+        this.userService.logout();
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscribe?.unsubscribe();
   }
 
   login() {
     this.auth
       .signInWithEmailAndPassword(this.email.value, this.password.value)
       .then((response) => {
-        console.log(response.user);
+        this.authSubscribe?.unsubscribe();
+        if (response.user) {
+          localStorage.setItem('uid', response.user.uid);
+        }
         this.router.navigate(['/']);
       })
       .catch((error) => {

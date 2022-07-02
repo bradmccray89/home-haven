@@ -1,0 +1,17 @@
+.dropdown-item {
+  @apply w-full min-w-fit flex justify-end items-center p-3;
+}
+
+.clickable {
+  @apply hover:bg-gray-500/30 cursor-pointer;
+}
+
+.toggle-bg::after {
+  content: "";
+  @apply absolute top-[.14rem] right-[3.2rem] bg-white border border-gray-300 rounded-full h-5 w-5 transition shadow-sm;
+}
+
+input:checked + .toggle-bg::after {
+  transform: translateX(100%);
+  @apply border-white;
+}

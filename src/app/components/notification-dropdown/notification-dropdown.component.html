@@ -1,0 +1,72 @@
+<div class="static sm:relative inline-block h-full w-full">
+  <div
+    #toggleButton
+    class="h-full w-full flex flex-col justify-center items-end text-black dark:text-white cursor-pointer whitespace-nowrap transition-colors duration-500 ease-in-out"
+    (click)="toggleDropdown()"
+  >
+    <ng-content></ng-content>
+  </div>
+  <div
+    #dropdown
+    *ngIf="dropdownOpen"
+    class="absolute right-1 sm:right-0 z-20 mt-3 sm:mt-1 max-h-[500px] min-w-[400px] sm:max-w-[95%] overflow-hidden bg-white rounded-md shadow-xl dark:bg-slate-700 border text-black dark:text-white transition-colors duration-500 ease-in-out"
+    @expand
+  >
+    <div
+      class="h-8 w-full px-3 py-1 flex justify-end items-end border-b border-gray-300 dark:border-gray-500"
+    >
+      <button
+        class="text-sm hover:underline cursor-pointer disabled:hover:no-underline disabled:cursor-not-allowed disabled:text-black/50 dark:disabled:text-white/50"
+        [disabled]="data.length === 0"
+        (click)="clearNotifications()"
+      >
+        Clear All
+      </button>
+    </div>
+
+    <ul class="w-full p-2 flex flex-col justify-center items-center">
+      <li *ngIf="data.length === 0">
+        <span class="text-xs italic text-black/50 dark:text-white/50">
+          No notifications to show
+        </span>
+      </li>
+      <li
+        *ngFor="let item of data"
+        class="relative dropdown-item border-b border-gray-300 dark:border-gray-500 last:border-b-0"
+      >
+        <div
+          class="flex items-center"
+          *ngIf="item?.route"
+          [routerLink]="[item?.route]"
+          (click)="toggleDropdown()"
+        >
+          <span>
+            {{ item?.message }}
+          </span>
+          <span class="text-xs text-black/50 dark:text-white/50">
+            {{ item?.createdAt.toDate() | date: "MM/dd/yyyy" }}
+          </span>
+        </div>
+        <div
+          class="flex flex-col justify-center items-end h-full w-full"
+          *ngIf="!item?.route"
+        >
+          <span>
+            {{ item?.message }}
+          </span>
+          <span class="text-xs text-black/50 dark:text-white/50">
+            {{ item?.createdAt.toDate() | date: "MM/dd/yyyy" }}
+          </span>
+        </div>
+        <div
+          class="clickable h-5 w-5 p-3 ml-3 rounded-full flex justify-center items-center text-black/50 dark:text-white/50"
+        >
+          <fa-icon
+            [icon]="faXmark"
+            (click)="dismissNotification(item)"
+          ></fa-icon>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

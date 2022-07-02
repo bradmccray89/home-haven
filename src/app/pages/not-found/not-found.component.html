@@ -1,1 +1,26 @@
-<p>not-found works!</p>
+<div class="h-screen w-screen relative flex justify-center">
+  <img
+    src="assets/images/bg-404.jpg"
+    alt="404"
+    class="w-full h-full absolute top-0 left-0 object-cover object-center"
+    @fade
+  />
+  <div class="h-full w-full absolute top-0 left-0 dark:bg-black/50"></div>
+  <div
+    class="absolute top-32 md:top-5 w-full flex flex-col justify-start items-center md:items-end px-0 md:px-28 lg:px-48 text-[100px] sm:text-[200px] md:text-[300px] text-gray-500 dark:text-gray-200"
+  >
+    <div class="h-36 sm:h-60 md:h-[23rem]" @fadeFromLeft>404</div>
+    <div class="text-xl md:text-4xl uppercase" @fadeFromLeft>Not Found</div>
+  </div>
+  <div
+    class="absolute bottom-60 lg:bottom-[300px] flex justify-center items-center"
+  >
+    <button
+      class="px-12 py-4 rounded-lg border text-white text-xl tracking-widest bg-slate-600/80 hover:bg-slate-500/80 hover:scale-105 backdrop-blur-sm transition-all duration-200 ease-in-out pulse"
+      [routerLink]="['/']"
+      @fadeFromBottom
+    >
+      Return Home
+    </button>
+  </div>
+</div>
