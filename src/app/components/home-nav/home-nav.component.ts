@@ -107,6 +107,7 @@ export class HomeNavComponent implements OnInit, OnDestroy {
         this.notificationService
           .getNotificationsForUser(uid)
           .subscribe((data) => {
+            console.log(data);
             this.notificationDropdownData = data;
             this.notificationCount = data.length;
           })

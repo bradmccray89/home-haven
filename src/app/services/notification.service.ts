@@ -22,7 +22,7 @@ export class NotificationService {
         return ref.where('userId', '==', userId).where('unread', '==', true);
       }
     );
-    return this.notificationCollection.valueChanges();
+    return this.notificationCollection.valueChanges({ idField: 'id' });
   }
 
   public dismissAllNotifications(notifications: Notification[]) {

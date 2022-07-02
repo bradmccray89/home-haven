@@ -37,11 +37,11 @@
         ></fa-icon>
         <div
           *ngIf="notificationCount > 0"
-          class="bg-red-500 absolute border border-slate-300 dark:border-slate-800 top-1 right-1 p-[.15rem] h-[0.85rem] min-w-[0.85rem] w-fit text-[0.62rem] text-white rounded-full shadow-lg transition-colors duration-500 ease-in-out"
+          class="bg-red-500 absolute border border-slate-300 dark:border-slate-800 top-1 right-1 p-1 h-4 min-w-[1rem] w-fit text-xs text-white rounded-full shadow-lg transition-colors duration-500 ease-in-out"
         >
-          <span class="h-full w-full flex justify-center items-center relative">
+          <div class="h-full w-full flex justify-center items-center">
             {{ notificationCount }}
-          </span>
+          </div>
         </div>
       </div>
     </app-notification-dropdown>
