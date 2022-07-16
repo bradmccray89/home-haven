@@ -1,6 +1,6 @@
+import { fadeFromBottom } from './../../animations/fade';
 import { ThemeService } from './../../services/theme.service';
 import { ToastrService } from 'ngx-toastr';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -20,24 +20,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  animations: [
-    trigger('fade', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(10px)' }),
-        animate(
-          '200ms 100ms ease-out',
-          style({ opacity: 1, transform: 'translateX(0)' })
-        ),
-      ]),
-      transition(':leave', [
-        style({ opacity: 1 }),
-        animate(
-          '200ms ease-out',
-          style({ opacity: 0, transform: 'translateY(10px)' })
-        ),
-      ]),
-    ]),
-  ],
+  animations: [fadeFromBottom],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   public faEye = faEye;

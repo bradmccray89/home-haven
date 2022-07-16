@@ -19,7 +19,10 @@ export class NotificationService {
     this.notificationCollection = this.firestore.collection(
       'notifications',
       (ref) => {
-        return ref.where('userId', '==', userId).where('unread', '==', true);
+        return ref
+          .where('userId', '==', userId)
+          .where('unread', '==', true)
+          .orderBy('createdAt', 'desc');
       }
     );
     return this.notificationCollection.valueChanges({ idField: 'id' });

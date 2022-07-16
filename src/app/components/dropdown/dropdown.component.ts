@@ -1,10 +1,10 @@
+import { expand } from './../../animations/expand';
 import { ThemeService } from './../../services/theme.service';
 import {
   Component,
   ElementRef,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   Renderer2,
   ViewChild,
@@ -12,24 +12,12 @@ import {
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { DropdownData } from 'src/app/shared/models/dropdown';
-import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
-  animations: [
-    trigger('expand', [
-      transition(':enter', [
-        style({ height: '0px', opacity: 0.5 }),
-        animate('200ms ease-in', style({ height: '*', opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ height: '*', opacity: 1 }),
-        animate('200ms ease-in', style({ height: '0px', opacity: 0.5 })),
-      ]),
-    ]),
-  ],
+  animations: [expand],
 })
 export class DropdownComponent {
   @Input() data: DropdownData[] = [];

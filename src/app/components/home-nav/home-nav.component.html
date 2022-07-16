@@ -1,26 +1,25 @@
 <div
-  class="h-20 w-full p-5 border-b border-gray-400 dark:border-slate-400 bg-slate-300 dark:bg-slate-800 flex justify-between items-center transition-colors duration-500 ease-in-out"
+  class="h-20 w-full p-5 flex justify-between items-center transition-colors duration-500 ease-in-out"
 >
   <div
+    class="relative h-full flex flex-grow items-center"
     *ngIf="currentUserProfile"
-    class="hidden md:block text-blue-400 dark:text-blue-300 text-3xl font-semibold tracking-wider px-3 py-1 rounded-md cursor-pointer transition-colors duration-500 ease-in-out"
-    [routerLink]="['/']"
     @fadeFromRight
   >
-    HomeHaven
-  </div>
-  <div
-    *ngIf="currentUserProfile"
-    class="md:hidden flex text-blue-400 dark:text-blue-300 text-3xl font-semibold tracking-wider px-3 py-2 rounded-md cursor-pointer transition-colors duration-500 ease-in-out"
-    @fadeFromRight
-  >
-    <div class="-translate-y-[0.4rem] translate-x-[0.305rem]">H</div>
-    <div class="translate-y-[0.4rem] -translate-x-[0.305rem]">H</div>
+    <fa-icon
+      [icon]="faMagnifyingGlass"
+      class="absolute left-3 text-gray-400 pointer-events-none"
+    ></fa-icon>
+    <input
+      type="text"
+      placeholder="Search"
+      class="h-full w-1/2 pl-10 rounded-full text-black dark:text-white dark:caret-white dark:bg-slate-700 border transition-colors duration-500 ease-in-out"
+    />
   </div>
   <div
     class="h-full flex items-center gap-x-5"
     *ngIf="currentUserProfile"
-    @fadeFromLeft
+    @fadeFromRight
   >
     <app-notification-dropdown
       [data]="notificationDropdownData"
@@ -29,7 +28,9 @@
     >
       <div
         class="relative flex justify-center items-center h-full aspect-square rounded-full hover:bg-gray-400/30 dark:hover:bg-gray-500/50 cursor-pointer transition-all duration-200 ease-in-out"
-        [ngClass]="{ 'bg-white dark:bg-slate-700': notificationDropdownOpen }"
+        [ngClass]="{
+          'bg-white/40 dark:bg-slate-700': notificationDropdownOpen
+        }"
       >
         <fa-icon
           [icon]="faBell"
@@ -53,8 +54,8 @@
       (logoutEmitter)="logout()"
     >
       <div
-        class="flex flex-col border border-slate-500 dark:border-white rounded-md px-3 py-1 hover:bg-gray-500/30 dark:hover:bg-gray-500/50"
-        [ngClass]="{ 'bg-white dark:bg-slate-700': menuDropdownOpen }"
+        class="flex flex-col border border-slate-500 dark:border-white rounded-md px-3 py-1 hover:bg-gray-500/30 dark:hover:bg-gray-500/50 transition-colors duration-500 ease-in-out"
+        [ngClass]="{ 'bg-white/40 dark:bg-slate-700': menuDropdownOpen }"
       >
         {{ currentUserProfile.firstName }}
         {{ currentUserProfile.lastName }}

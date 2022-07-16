@@ -1,0 +1,21 @@
+<div
+  class="h-screen w-72 p-5 border-r border-gray-400 dark:border-slate-400 bg-neutral-100 dark:bg-slate-700 flex flex-col justify-start items-start transition-colors duration-500 ease-in-out"
+>
+  <div
+    *ngIf="currentUserProfile"
+    class="hidden md:flex h-20 w-full justify-center text-blue-400 dark:text-blue-300 text-3xl font-semibold tracking-wider px-3 py-1 rounded-md cursor-pointer transition-colors duration-500 ease-in-out"
+    [routerLink]="['/']"
+    @fadeFromLeft
+  >
+    HomeHaven
+  </div>
+  <div
+    *ngIf="currentUserProfile"
+    class="md:hidden flex text-blue-400 dark:text-blue-300 text-3xl font-semibold tracking-wider px-3 py-2 rounded-md cursor-pointer transition-colors duration-500 ease-in-out"
+    @fadeFromLeft
+  >
+    <div class="-translate-y-[0.4rem] translate-x-[0.305rem]">H</div>
+    <div class="translate-y-[0.4rem] -translate-x-[0.305rem]">H</div>
+  </div>
+  <div *ngIf="currentUserProfile" @fadeFromLeft>Sidebar Content</div>
+</div>

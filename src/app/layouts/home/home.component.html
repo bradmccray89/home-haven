@@ -1,11 +1,14 @@
-<div class="h-screen w-screen flex flex-col relative">
-  <app-home-nav
-    class="flex-grow-0"
-    [currentUserProfile]="currentUserProfile"
-  ></app-home-nav>
-  <div
-    class="flex-grow bg-neutral-100 dark:bg-zinc-800 transition-colors duration-500 ease-in-out"
-  >
-    <router-outlet></router-outlet>
+<div
+  class="h-screen w-screen flex relative bg-neutral-200 dark:bg-zinc-800 transition-colors duration-500 ease-in-out"
+>
+  <app-sidebar [currentUserProfile]="currentUserProfile"></app-sidebar>
+  <div class="h-full w-full flex flex-col">
+    <app-home-nav
+      class="flex-grow-0"
+      [currentUserProfile]="currentUserProfile"
+    ></app-home-nav>
+    <div class="flex-grow">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

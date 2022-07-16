@@ -1,6 +1,84 @@
-<div class="h-full w-full p-5 bg-blue-500/50">
-  <div
-    class="h-12 w-12 bg-gray-500/50"
-    *ngFor="let property of propertyList"
-  ></div>
+<div class="h-full w-full p-5 flex justify-evenly gap-3">
+  <div class="max-w-2xl flex-grow" *ngIf="tenantList.length > 0">
+    <div
+      class="mb-2 border-b border-slate-300 text-black dark:text-white transition duration-500 ease-in-out"
+    >
+      My Home
+    </div>
+    <div
+      class="h-[26rem] w-full p-2 border border-slate-300 bg-neutral-100 dark:bg-zinc-800 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl overflow-hidden cursor-pointer transition duration-500 ease-in-out"
+      *ngFor="let property of tenantList"
+    >
+      <div class="relative h-2/3 w-full rounded-lg overflow-hidden">
+        <img
+          class="absolute top-0 left-0 w-full h-full object-cover"
+          [src]="property.thumbnail"
+          [alt]="property.title"
+          [hidden]="!property.loaded"
+          (load)="property.loaded = true"
+          [@fadeImage]="property.loaded ? 'show' : 'hide'"
+        />
+        <div
+          class="absolute top-0 left-0 w-full h-full bg-gray-700 opacity-0 animate-pulse"
+          *ngIf="!property.loaded && property.thumbnail"
+        ></div>
+      </div>
+      <div
+        class="h-1/3 hover:h-full w-full p-3 hover:backdrop-blur-sm transition-all duration-500 ease-in-out z-50"
+      >
+        <div
+          class="font-semi-bold text-black dark:text-white transition duration-500 ease-in-out"
+        >
+          {{ property.street }}
+          <div *ngIf="property.unit" class="pl-0">{{ property.unit }}</div>
+        </div>
+        <div
+          class="text-sm text-black dark:text-white transition duration-500 ease-in-out"
+        >
+          {{ property.city }}, {{ property.state }} {{ property.zip }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-2xl flex-grow" *ngIf="ownerList.length > 0">
+    <div
+      class="mb-2 border-b border-slate-300 text-black dark:text-white transition duration-500 ease-in-out"
+    >
+      Properties
+    </div>
+    <div
+      class="h-[26rem] w-full p-2 border border-slate-300 bg-neutral-100 dark:bg-zinc-800 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl overflow-hidden cursor-pointer transition duration-500 ease-in-out"
+      *ngFor="let property of ownerList"
+    >
+      <div class="relative h-2/3 w-full rounded-lg overflow-hidden">
+        <img
+          class="absolute top-0 left-0 w-full h-full object-cover"
+          [src]="property.thumbnail"
+          [alt]="property.title"
+          [hidden]="!property.loaded"
+          (load)="property.loaded = true"
+          [@fadeImage]="property.loaded ? 'show' : 'hide'"
+        />
+        <div
+          class="absolute top-0 left-0 w-full h-full bg-gray-700 opacity-0 animate-pulse"
+          *ngIf="!property.loaded && property.thumbnail"
+        ></div>
+      </div>
+      <div
+        class="h-1/3 hover:h-full w-full p-3 hover:backdrop-blur-sm transition-all duration-500 ease-in-out z-50"
+      >
+        <div
+          class="font-semi-bold text-black dark:text-white transition duration-500 ease-in-out"
+        >
+          {{ property.street }}
+          <div *ngIf="property.unit" class="pl-0">{{ property.unit }}</div>
+        </div>
+        <div
+          class="text-sm text-black dark:text-white transition duration-500 ease-in-out"
+        >
+          {{ property.city }}, {{ property.state }} {{ property.zip }}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

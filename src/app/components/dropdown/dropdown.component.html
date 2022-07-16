@@ -1,7 +1,7 @@
 <div class="relative inline-block h-full w-full">
   <div
     #toggleButton
-    class="h-full w-full flex flex-col justify-center items-end overflow-clip text-black dark:text-white cursor-pointer whitespace-nowrap transition-colors duration-500 ease-in-out"
+    class="h-full w-full flex flex-col justify-center items-end overflow-clip text-black dark:text-white cursor-pointer whitespace-nowrap"
     (click)="toggleDropdown()"
   >
     <ng-content></ng-content>
@@ -9,7 +9,7 @@
   <div
     #dropdown
     *ngIf="dropdownOpen"
-    class="absolute right-0 z-20 mt-1 overflow-hidden bg-white rounded-md shadow-xl dark:bg-slate-700 border text-black dark:text-white transition-colors duration-500 ease-in-out"
+    class="absolute right-0 z-20 mt-1 overflow-hidden bg-white rounded-md shadow-xl dark:bg-slate-700 border border-gray-300 dark:border-white text-black dark:text-white transition-colors duration-500 ease-in-out"
     @expand
   >
     <ul class="w-full p-2 flex flex-col justify-center items-center">

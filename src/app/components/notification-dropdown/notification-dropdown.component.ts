@@ -1,3 +1,4 @@
+import { expand } from './../../animations/expand';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Notification } from './../../shared/models/notification';
 import {
@@ -17,18 +18,7 @@ import { NotificationService } from 'src/app/services/notification.service';
   selector: 'app-notification-dropdown',
   templateUrl: './notification-dropdown.component.html',
   styleUrls: ['./notification-dropdown.component.scss'],
-  animations: [
-    trigger('expand', [
-      transition(':enter', [
-        style({ height: '0px', opacity: 0.5 }),
-        animate('200ms ease-in', style({ height: '*', opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ height: '*', opacity: 1 }),
-        animate('200ms ease-in', style({ height: '0px', opacity: 0.5 })),
-      ]),
-    ]),
-  ],
+  animations: [expand],
 })
 export class NotificationDropdownComponent {
   @Input() data: Notification[] = [];

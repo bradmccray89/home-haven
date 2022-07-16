@@ -1,3 +1,4 @@
+import { fadeFromRight, fadeFromLeft } from './../../animations/fade';
 import { NotificationService } from './../../services/notification.service';
 import { UserProfile } from './../../shared/models/user-profile';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -11,10 +12,10 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, Timestamp } from 'rxjs';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { DropdownData } from 'src/app/shared/models/dropdown';
 import { Notification } from 'src/app/shared/models/notification';
@@ -24,40 +25,7 @@ import { Notification } from 'src/app/shared/models/notification';
   templateUrl: './home-nav.component.html',
   styleUrls: ['./home-nav.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  animations: [
-    trigger('fadeFromLeft', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateX(-20px)' }),
-        animate(
-          '500ms 100ms ease-out',
-          style({ opacity: 1, transform: 'translateX(0)' })
-        ),
-      ]),
-      transition(':leave', [
-        style({ opacity: 1, transform: 'translateX(0)' }),
-        animate(
-          '500ms ease-out',
-          style({ opacity: 0, transform: 'translateX(-20px)' })
-        ),
-      ]),
-    ]),
-    trigger('fadeFromRight', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateX(20px)' }),
-        animate(
-          '500ms 100ms ease-out',
-          style({ opacity: 1, transform: 'translateX(0)' })
-        ),
-      ]),
-      transition(':leave', [
-        style({ opacity: 1, transform: 'translateX(0)' }),
-        animate(
-          '500ms ease-out',
-          style({ opacity: 0, transform: 'translateX(20px)' })
-        ),
-      ]),
-    ]),
-  ],
+  animations: [fadeFromLeft, fadeFromRight],
 })
 export class HomeNavComponent implements OnInit, OnDestroy {
   @Input() sidebarOpen = true;
@@ -68,6 +36,7 @@ export class HomeNavComponent implements OnInit, OnDestroy {
   public notificationDropdownOpen: boolean = false;
   public menuDropdownOpen: boolean = false;
   public faBell = faBell;
+  public faMagnifyingGlass = faMagnifyingGlass;
   public notificationData = this.notificationService.notificationList;
   public notificationDropdownData!: Notification[];
   public notificationCount: number = 0;
@@ -107,7 +76,11 @@ export class HomeNavComponent implements OnInit, OnDestroy {
         this.notificationService
           .getNotificationsForUser(uid)
           .subscribe((data) => {
-            console.log(data);
+            data.map((item) => {
+              item.elapsedTime = this.getDateDifference(
+                new Date(item.createdAt.toDate())
+              );
+            });
             this.notificationDropdownData = data;
             this.notificationCount = data.length;
           })
@@ -144,5 +117,37 @@ export class HomeNavComponent implements OnInit, OnDestroy {
       localStorage.setItem('theme', theme);
       this.themeService.setDarkTheme(theme === 'dark');
     });
+  }
+
+  private getDateDifference(date: Date) {
+    const timeDifference = Math.abs(date.getTime() - new Date().getTime());
+    const diffDays = Math.floor(timeDifference / (1000 * 3600 * 24));
+    const diffHours = Math.floor(timeDifference / (1000 * 3600));
+    const diffMinutes = Math.floor(timeDifference / (1000 * 60));
+    if (diffDays <= 1) {
+      if (diffDays === 1) {
+        return `${diffDays} day ago`;
+      } else {
+        if (diffHours <= 1) {
+          if (diffHours === 1) {
+            return `${diffHours} hour ago`;
+          } else {
+            if (diffMinutes <= 1) {
+              if (diffMinutes === 1) {
+                return `${diffMinutes} minute ago`;
+              } else {
+                return 'Less than a minute ago';
+              }
+            } else {
+              return `${diffMinutes} minutes ago`;
+            }
+          }
+        } else {
+          return `${diffHours} hours ago`;
+        }
+      }
+    } else {
+      return `${diffDays} days ago`;
+    }
   }
 }

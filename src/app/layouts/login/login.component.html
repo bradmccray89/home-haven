@@ -12,7 +12,7 @@
     <div
       class="h-full md:h-[500px] min-h-fit w-full md:w-[800px] md:max-w-[800px] md:bg-white/75 md:dark:bg-slate-800/75 backdrop-blur-md md:rounded-xl flex flex-col justify-between items-center overflow-x-hidden p-12 pb-32 md:pb-12 transition duration-500 ease-in-out"
       *ngIf="!showSignup && !showForgotPassword"
-      @fade
+      @fadeFromBottom
     >
       <span class="text-4xl font-bold text-blue-400">HomeHaven</span>
       <form
@@ -94,7 +94,7 @@
     <div
       class="h-[450px] min-h-fit w-[600px] max-w-[95%] md:max-w-[600px] bg-white/75 dark:bg-slate-800/75 backdrop-blur-md rounded-xl flex flex-col justify-between items-center overflow-x-hidden z-50 p-12 transition duration-500 ease-in-out"
       *ngIf="showSignup"
-      @fade
+      @fadeFromBottom
     >
       <app-signup
         class="h-full w-full"
@@ -108,7 +108,7 @@
     <div
       class="h-[450px] min-h-fit w-[600px] max-w-[95%] md:max-w-[600px] bg-white/75 dark:bg-slate-800/75 backdrop-blur-md rounded-xl flex flex-col justify-between items-center overflow-x-hidden z-50 p-12 transition duration-500 ease-in-out"
       *ngIf="showForgotPassword"
-      @fade
+      @fadeFromBottom
     >
       <app-forgot-password
         class="h-full w-full"

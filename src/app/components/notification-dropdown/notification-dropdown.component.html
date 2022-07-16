@@ -9,7 +9,7 @@
   <div
     #dropdown
     *ngIf="dropdownOpen"
-    class="absolute right-1 sm:right-0 z-20 mt-3 sm:mt-1 max-h-[500px] min-w-[400px] sm:max-w-[95%] overflow-hidden bg-white rounded-md shadow-xl dark:bg-slate-700 border text-black dark:text-white transition-colors duration-500 ease-in-out"
+    class="absolute right-1 sm:right-0 z-20 mt-3 sm:mt-1 max-h-[500px] min-w-[400px] sm:max-w-[95%] overflow-hidden bg-white rounded-md shadow-xl dark:bg-slate-700 border border-gray-300 dark:border-white text-black dark:text-white transition-colors duration-500 ease-in-out"
     @expand
   >
     <div
@@ -27,7 +27,7 @@
     <ul class="w-full p-2 flex flex-col justify-center items-center">
       <li *ngIf="data.length === 0">
         <span class="text-xs italic text-black/50 dark:text-white/50">
-          No notifications to show
+          No new notifications
         </span>
       </li>
       <li
@@ -44,7 +44,7 @@
             {{ item?.message }}
           </span>
           <span class="text-xs text-black/50 dark:text-white/50">
-            {{ item?.createdAt.toDate() | date: "MM/dd/yyyy" }}
+            {{ item.elapsedTime }}
           </span>
         </div>
         <div
@@ -55,7 +55,7 @@
             {{ item?.message }}
           </span>
           <span class="text-xs text-black/50 dark:text-white/50">
-            {{ item?.createdAt.toDate() | date: "MM/dd/yyyy" }}
+            {{ item.elapsedTime }}
           </span>
         </div>
         <div
