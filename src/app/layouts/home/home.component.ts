@@ -4,7 +4,7 @@ import { UserProfile } from './../../shared/models/user-profile';
 import { Routes } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +20,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {

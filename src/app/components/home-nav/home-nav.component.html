@@ -1,33 +1,35 @@
 <div
-  class="h-20 w-full p-5 flex justify-between items-center transition-colors duration-500 ease-in-out"
+  class="flex items-center justify-between w-full h-20 p-5 transition-colors duration-500 ease-in-out"
 >
   <div
-    class="relative h-full flex flex-grow items-center"
+    class="relative flex items-center flex-grow h-full"
     *ngIf="currentUserProfile"
     @fadeFromRight
   >
     <fa-icon
       [icon]="faMagnifyingGlass"
-      class="absolute left-3 text-gray-400 pointer-events-none"
+      class="absolute flex items-center justify-center h-full text-gray-400 rounded-full cursor-pointer aspect-square hover:bg-gray-500/50"
+      (click)="onSearchIconClick(searchBar)"
     ></fa-icon>
     <input
+      #searchBar
       type="text"
       placeholder="Search"
-      class="h-full w-1/2 pl-10 rounded-full text-black dark:text-white dark:caret-white dark:bg-slate-700 border transition-colors duration-500 ease-in-out"
+      class="w-1/2 h-full pl-12 text-black transition-colors duration-500 ease-in-out border rounded-full focus:outline-none focus:ring-1 dark:focus:ring-white dark:text-white dark:caret-white dark:bg-slate-700"
     />
   </div>
   <div
-    class="h-full flex items-center gap-x-5"
+    class="flex items-center h-full gap-x-5"
     *ngIf="currentUserProfile"
     @fadeFromRight
   >
     <app-notification-dropdown
       [data]="notificationDropdownData"
       (dropdownIsOpenEmitter)="setDropdown($event, 'notificationDropdown')"
-      class="h-full w-full flex justify-center items-center"
+      class="flex items-center justify-center w-full h-full"
     >
       <div
-        class="relative flex justify-center items-center h-full aspect-square rounded-full hover:bg-gray-400/30 dark:hover:bg-gray-500/50 cursor-pointer transition-all duration-200 ease-in-out"
+        class="relative flex items-center justify-center h-full transition-all duration-200 ease-in-out rounded-full cursor-pointer aspect-square hover:bg-gray-400/30 dark:hover:bg-gray-500/50"
         [ngClass]="{
           'bg-white/40 dark:bg-slate-700': notificationDropdownOpen
         }"
@@ -40,7 +42,7 @@
           *ngIf="notificationCount > 0"
           class="bg-red-500 absolute border border-slate-300 dark:border-slate-800 top-1 right-1 p-1 h-4 min-w-[1rem] w-fit text-xs text-white rounded-full shadow-lg transition-colors duration-500 ease-in-out"
         >
-          <div class="h-full w-full flex justify-center items-center">
+          <div class="flex items-center justify-center w-full h-full">
             {{ notificationCount }}
           </div>
         </div>
@@ -54,7 +56,7 @@
       (logoutEmitter)="logout()"
     >
       <div
-        class="flex flex-col border border-slate-500 dark:border-white rounded-md px-3 py-1 hover:bg-gray-500/30 dark:hover:bg-gray-500/50 transition-colors duration-500 ease-in-out"
+        class="flex flex-col px-3 py-1 transition-colors duration-500 ease-in-out border rounded-md select-none border-slate-500 dark:border-white hover:bg-gray-500/30 dark:hover:bg-gray-500/50"
         [ngClass]="{ 'bg-white/40 dark:bg-slate-700': menuDropdownOpen }"
       >
         {{ currentUserProfile.firstName }}

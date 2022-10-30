@@ -10,6 +10,7 @@ import {
   animate,
   state,
 } from '@angular/animations';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,7 +32,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(
     private propertyService: PropertyService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.subscriptions.push(
         this.propertyService.getOwnerList(uid).subscribe((data) => {
           this.ownerList = data;
+          this.loadingService.setInitialLoading(false);
           this.ownerList.map((item) => {
             this.subscriptions.push(
               this.storage

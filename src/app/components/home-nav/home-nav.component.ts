@@ -96,6 +96,10 @@ export class HomeNavComponent implements OnInit, OnDestroy {
     this.themeService.toggleDarkTheme();
   }
 
+  public onSearchIconClick(searchBar: HTMLInputElement) {
+    searchBar.focus();
+  }
+
   public toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
     this.toggleSidebarEmit.emit(this.sidebarOpen);
