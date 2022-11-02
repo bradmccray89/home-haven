@@ -1,0 +1,4 @@
+.sidebar-content > li
+{
+  @apply hover:bg-gray-400/50 cursor-pointer w-full text-black dark:text-white rounded;
+}
