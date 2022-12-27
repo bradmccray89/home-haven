@@ -1,9 +1,9 @@
 <div
-  class="flex flex-col items-start justify-start h-screen p-5 transition-colors duration-500 ease-in-out border-r border-gray-400 w-72 dark:border-slate-400 bg-neutral-100 dark:bg-slate-700"
+  class="flex flex-col items-start justify-start h-screen p-5 transition-colors duration-500 ease-in-out border-r border-slate-300 w-72 bg-neutral-100 dark:bg-slate-700"
 >
   <div
     *ngIf="currentUserProfile"
-    class="justify-center hidden w-full h-20 px-3 py-1 text-3xl font-semibold tracking-wider text-blue-400 transition-colors duration-500 ease-in-out rounded-md cursor-pointer md:flex dark:text-blue-300"
+    class="justify-center hidden w-full h-20 px-3 py-1 text-3xl font-semibold tracking-wider text-blue-400 rounded-md cursor-pointer md:flex dark:text-blue-300"
     [routerLink]="['/']"
     @fadeFromLeft
   >
@@ -17,17 +17,19 @@
     <div class="-translate-y-[0.4rem] translate-x-[0.305rem]">H</div>
     <div class="translate-y-[0.4rem] -translate-x-[0.305rem]">H</div>
   </div>
-  <div *ngIf="currentUserProfile" @fadeFromLeft>
-    <div class="text-black sidebar-content dark:text-white">
-      <div>Inbox</div>
-      <div>Properties</div>
-      <div>Bildivng</div>
-      <div>Documents</div>
-      <div>Maintenance</div>
-      <div>Orders</div>
-      <div>Tasks</div>
-      <div>Schedule</div>
-      <div>Reports</div>
-    </div>
+  <div
+    *ngIf="currentUserProfile"
+    @fadeFromLeft
+    class="w-full text-black sidebar-content dark:text-white"
+  >
+    <div>Inbox</div>
+    <div>Properties</div>
+    <div>Billing</div>
+    <div>Documents</div>
+    <div>Maintenance</div>
+    <div>Orders</div>
+    <div>Tasks</div>
+    <div>Schedule</div>
+    <div>Reports</div>
   </div>
 </div>
