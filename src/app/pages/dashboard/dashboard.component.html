@@ -1,7 +1,8 @@
-<div class="h-full w-full p-5 flex justify-evenly gap-3">
-  <div class="max-w-2xl flex-grow" *ngIf="tenantList.length > 0">
+<div class="flex w-full h-full gap-3 p-5 bg-white/50 justify-evenly"></div>
+<!-- <div class="flex w-full h-full gap-3 p-5 justify-evenly">
+  <div class="flex-grow max-w-2xl" *ngIf="tenantList.length > 0">
     <div
-      class="mb-2 border-b border-slate-300 text-black dark:text-white transition duration-500 ease-in-out"
+      class="mb-2 text-black transition duration-500 ease-in-out border-b border-slate-300 dark:text-white"
     >
       My Home
     </div>
@@ -9,9 +10,9 @@
       class="h-[26rem] w-full p-2 border border-slate-300 bg-neutral-100 dark:bg-zinc-800 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl overflow-hidden cursor-pointer transition duration-500 ease-in-out"
       *ngFor="let property of tenantList"
     >
-      <div class="relative h-2/3 w-full rounded-lg overflow-hidden">
+      <div class="relative w-full overflow-hidden rounded-lg h-2/3">
         <img
-          class="absolute top-0 left-0 w-full h-full object-cover"
+          class="absolute top-0 left-0 object-cover w-full h-full"
           [src]="property.thumbnail"
           [alt]="property.title"
           [hidden]="!property.loaded"
@@ -24,25 +25,25 @@
         ></div>
       </div>
       <div
-        class="h-1/3 hover:h-full w-full p-3 hover:backdrop-blur-sm transition-all duration-500 ease-in-out z-50"
+        class="z-50 w-full p-3 transition-all duration-500 ease-in-out h-1/3 hover:h-full hover:backdrop-blur-sm"
       >
         <div
-          class="font-semi-bold text-black dark:text-white transition duration-500 ease-in-out"
+          class="text-black transition duration-500 ease-in-out font-semi-bold dark:text-white"
         >
           {{ property.street }}
           <div *ngIf="property.unit" class="pl-0">{{ property.unit }}</div>
         </div>
         <div
-          class="text-sm text-black dark:text-white transition duration-500 ease-in-out"
+          class="text-sm text-black transition duration-500 ease-in-out dark:text-white"
         >
           {{ property.city }}, {{ property.state }} {{ property.zip }}
         </div>
       </div>
     </div>
   </div>
-  <div class="max-w-2xl flex-grow" *ngIf="ownerList.length > 0">
+  <div class="flex-grow max-w-2xl" *ngIf="ownerList.length > 0">
     <div
-      class="mb-2 border-b border-slate-300 text-black dark:text-white transition duration-500 ease-in-out"
+      class="mb-2 text-black transition duration-500 ease-in-out border-b border-slate-300 dark:text-white"
     >
       Properties
     </div>
@@ -50,9 +51,9 @@
       class="h-[26rem] w-full p-2 border border-slate-300 bg-neutral-100 dark:bg-zinc-800 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl overflow-hidden cursor-pointer transition duration-500 ease-in-out"
       *ngFor="let property of ownerList"
     >
-      <div class="relative h-2/3 w-full rounded-lg overflow-hidden">
+      <div class="relative w-full overflow-hidden rounded-lg h-2/3">
         <img
-          class="absolute top-0 left-0 w-full h-full object-cover"
+          class="absolute top-0 left-0 object-cover w-full h-full"
           [src]="property.thumbnail"
           [alt]="property.title"
           [hidden]="!property.loaded"
@@ -65,20 +66,20 @@
         ></div>
       </div>
       <div
-        class="h-1/3 hover:h-full w-full p-3 hover:backdrop-blur-sm transition-all duration-500 ease-in-out z-50"
+        class="z-50 w-full p-3 transition-all duration-500 ease-in-out h-1/3 hover:h-full hover:backdrop-blur-sm"
       >
         <div
-          class="font-semi-bold text-black dark:text-white transition duration-500 ease-in-out"
+          class="text-black transition duration-500 ease-in-out font-semi-bold dark:text-white"
         >
           {{ property.street }}
           <div *ngIf="property.unit" class="pl-0">{{ property.unit }}</div>
         </div>
         <div
-          class="text-sm text-black dark:text-white transition duration-500 ease-in-out"
+          class="text-sm text-black transition duration-500 ease-in-out dark:text-white"
         >
           {{ property.city }}, {{ property.state }} {{ property.zip }}
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->

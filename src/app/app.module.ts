@@ -30,6 +30,7 @@ import { PropertyListComponent } from './pages/property-list/property-list.compo
 import { PropertyDialogComponent } from './components/property-dialog/property-dialog.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { PropertyTableComponent } from './components/property-table/property-table.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     PropertyDialogComponent,
     SignupComponent,
     ForgotPasswordComponent,
+    PropertyTableComponent,
   ],
   imports: [
     AppRoutingModule,
