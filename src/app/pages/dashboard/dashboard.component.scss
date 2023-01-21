@@ -1,0 +1,39 @@
+table {
+  @apply w-full border-collapse rounded-lg table-auto;
+
+  & > thead {
+    @apply w-full;
+
+    & > tr {
+      @apply h-10 w-full border-b border-gray-400 bg-gray-500/25;
+
+      & > th {
+        @apply text-left p-2;
+
+        &:not(:first-child) {
+          @apply border-l border-gray-400;
+        }
+      }
+    }
+  }
+
+  & > tbody {
+    @apply w-full;
+
+    & > tr {
+      @apply hover:bg-gray-500/25 cursor-pointer;
+
+      &:nth-child(even) {
+        @apply hover:bg-gray-500/25;
+      }
+
+      & > td {
+        @apply p-2;
+
+        &:not(:first-child) {
+          @apply border-l border-gray-400;
+        }
+      }
+    }
+  }
+}

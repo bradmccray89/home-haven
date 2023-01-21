@@ -1,4 +1,33 @@
-<div class="flex w-full h-full gap-3 p-5 bg-white/50 justify-evenly"></div>
+<div class="flex w-full h-full gap-3 p-5 overflow-auto justify-eve">
+  <div class="relative w-full h-full overflow-auto rounded lg:px-20 md:px-0">
+    <table class="absolute top-0 bottom-0 left-0 right-0" @fadeFromBottom>
+      <thead>
+        <tr>
+          <th>Tenant Name</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Occupied</th>
+          <th>Rent Amount</th>
+          <th>Last Payment</th>
+          <th>On Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of propertyList">
+          <td>{{ item.tenantFullName }}</td>
+          <td>{{ item.streetAddress }}</td>
+          <td>{{ item.city }}</td>
+          <td>{{ item.state }}</td>
+          <td>{{ item.occupied ? "yes" : "no" }}</td>
+          <td>{{ item.rentAmount | currency }}</td>
+          <td>{{ item.lastPaymentDate | date }}</td>
+          <td>{{ item.onTimePercentage | percent }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <!-- <div class="flex w-full h-full gap-3 p-5 justify-evenly">
   <div class="flex-grow max-w-2xl" *ngIf="tenantList.length > 0">
     <div
