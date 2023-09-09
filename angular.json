@@ -113,8 +113,9 @@
       }
     }
   },
-  "defaultProject": "home-haven",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
