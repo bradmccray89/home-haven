@@ -1,13 +1,15 @@
-<div class="h-full w-full z-20 flex flex-col justify-between items-center">
+<div class="z-20 flex flex-col items-center justify-between w-full h-full">
   <span class="text-4xl font-bold text-blue-400">Sign Up</span>
   <button
-    class="absolute hidden top-4 right-6 md:flex justify-center items-center"
+    class="absolute items-center justify-center hidden top-4 right-6 md:flex"
     (click)="close()"
   >
-    <fa-icon
-      [icon]="faXmark"
-      class="h-8 flex justify-center items-center aspect-square rounded-full text-gray-500 hover:text-gray-400 fa-xl"
-    ></fa-icon>
+    <ng-icon
+      name="heroXMark"
+      size="1.5rem"
+      strokeWidth="0.175rem"
+      class="flex items-center justify-center h-8 text-gray-500 rounded-full aspect-square hover:text-gray-400"
+    ></ng-icon>
   </button>
   <form
     class="min-w-[220px] w-[95%] max-w-[350px] flex flex-col gap-y-6"
@@ -39,12 +41,14 @@
         placeholder="password"
       />
       <div
-        class="absolute right-5 top-2 md:-right-6 md:top-2 cursor-pointer text-black dark:text-white"
+        class="absolute text-black transition-colors duration-500 ease-in-out cursor-pointer right-2 top-2 md:-right-7 md:top-2 dark:text-white"
         *ngIf="signupForm.value.password.length > 0"
         (click)="togglePassword()"
       >
-        <fa-icon [icon]="faEye" *ngIf="!showPassword"></fa-icon>
-        <fa-icon [icon]="faEyeSlash" *ngIf="showPassword"></fa-icon>
+        <ng-icon
+          [name]="showPassword ? 'heroEyeSlash' : 'heroEye'"
+          size="1.5rem"
+        ></ng-icon>
       </div>
       <label
         for="password"
@@ -71,7 +75,7 @@
       </label>
     </div>
     <button
-      class="w-full p-2 bg-blue-400 hover:bg-blue-500 active:bg-blue-600 disabled:hover:bg-blue-400 text-white rounded-lg outline-offset-2"
+      class="w-full p-2 text-white bg-blue-400 rounded-lg hover:bg-blue-500 active:bg-blue-600 disabled:hover:bg-blue-400 outline-offset-2"
       type="submit"
       [disabled]="!signupForm.valid"
       (click)="signup()"
@@ -79,9 +83,9 @@
       Create Account
     </button>
   </form>
-  <div class="w-full flex justify-center items-center">
+  <div class="flex items-center justify-center w-full">
     <button
-      class="hover:ring-2 active:bg-gray-200 text-blue-400 px-3 py-1 rounded-md"
+      class="px-3 py-1 text-blue-400 rounded-md hover:ring-2 active:bg-gray-200"
       (click)="close()"
     >
       Back to Sign In

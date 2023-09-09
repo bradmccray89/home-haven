@@ -24,6 +24,7 @@ import { Notification } from 'src/app/shared/models/notification';
   selector: 'app-home-nav',
   templateUrl: './home-nav.component.html',
   styleUrls: ['./home-nav.component.scss'],
+  // TODO: Remove ViewEncapsulation.None
   encapsulation: ViewEncapsulation.None,
   animations: [fadeFromLeft, fadeFromRight],
 })

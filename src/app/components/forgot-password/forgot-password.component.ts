@@ -29,6 +29,7 @@ export class ForgotPasswordComponent {
   constructor(private auth: AngularFireAuth, private toastr: ToastrService) {}
 
   sendForgotPassword() {
+    if (this.forgotPasswordForm.invalid || !this.email.value) return;
     this.auth
       .sendPasswordResetEmail(this.email.value)
       .then((response) => {

@@ -19,6 +19,7 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  // TODO: Remove ViewEncapsulation.None
   encapsulation: ViewEncapsulation.None,
   animations: [fadeFromBottom],
 })
@@ -64,6 +65,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login() {
+    if (this.loginForm.invalid || !this.email.value || !this.password.value)
+      return;
     this.auth
       .signInWithEmailAndPassword(this.email.value, this.password.value)
       .then((response) => {
