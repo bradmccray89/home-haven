@@ -29,15 +29,16 @@
       class="flex items-center justify-center w-full h-full"
     >
       <div
-        class="relative flex items-center justify-center h-full transition-all duration-200 ease-in-out rounded-full cursor-pointer aspect-square hover:bg-gray-400/30 dark:hover:bg-gray-500/50"
+        class="relative flex items-center justify-center h-full transition-all duration-200 ease-in-out rounded-full cursor-pointer select-none aspect-square hover:bg-gray-400/30 dark:hover:bg-gray-500/50"
         [ngClass]="{
           'bg-white/40 dark:bg-slate-700': notificationDropdownOpen
         }"
       >
-        <fa-icon
-          [icon]="faBell"
-          class="text-gray-600 dark:text-gray-300 fa-lg"
-        ></fa-icon>
+        <ng-icon
+          name="heroBell"
+          size="1.5rem"
+          class="text-gray-600 dark:text-gray-200"
+        ></ng-icon>
         <div
           *ngIf="notificationCount > 0"
           class="bg-red-500 absolute top-1 right-1 p-1 h-4 min-w-[1rem] w-fit text-xs text-white rounded-full shadow-lg transition-colors duration-500 ease-in-out"

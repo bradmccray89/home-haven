@@ -33,23 +33,6 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { PropertyTableComponent } from './components/property-table/property-table.component';
 
-//Icon Imports
-import {
-  heroEye,
-  heroEyeSlash,
-  heroMoon,
-  heroSun,
-  heroXMark,
-} from '@ng-icons/heroicons/outline';
-
-const icons = {
-  heroXMark,
-  heroEye,
-  heroEyeSlash,
-  heroSun,
-  heroMoon,
-};
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +62,6 @@ const icons = {
       toastClass: 'ngx-toastr rounded-md',
       messageClass: 'border-l pl-3',
     }),
-    NgIconsModule.withIcons(icons),
   ],
   providers: [
     ScreenTrackingService,

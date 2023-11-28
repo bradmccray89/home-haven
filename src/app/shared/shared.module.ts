@@ -6,6 +6,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NotificationDropdownComponent } from '../components/notification-dropdown/notification-dropdown.component';
 
+//Icon Imports
+import { heroXMark, heroBell } from '@ng-icons/heroicons/outline';
+import {
+  heroMoonSolid,
+  heroSunSolid,
+  heroEyeSolid,
+  heroEyeSlashSolid,
+} from '@ng-icons/heroicons/solid';
+import { NgIconsModule } from '@ng-icons/core';
+
+const icons = {
+  heroXMark,
+  heroEyeSolid,
+  heroEyeSlashSolid,
+  heroSunSolid,
+  heroMoonSolid,
+  heroBell,
+};
+
 @NgModule({
   imports: [
     RouterModule,
@@ -13,6 +32,7 @@ import { NotificationDropdownComponent } from '../components/notification-dropdo
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    NgIconsModule.withIcons(icons),
   ],
   exports: [
     DropdownComponent,
@@ -22,6 +42,7 @@ import { NotificationDropdownComponent } from '../components/notification-dropdo
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    NgIconsModule,
   ],
   declarations: [DropdownComponent, NotificationDropdownComponent],
   providers: [],

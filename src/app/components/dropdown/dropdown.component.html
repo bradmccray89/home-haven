@@ -27,10 +27,16 @@
         class="transition-colors duration-500 ease-in-out border-t border-b border-gray-300 dropdown-item dark:border-gray-500"
       >
         <label for="toggle" class="relative flex items-center cursor-pointer">
-          <fa-icon
+          <ng-icon
+            name="heroSunSolid"
+            size="1.5rem"
+            color="orange"
+            class="pr-2 transition-opacity duration-500 opacity-100 dark:opacity-0"
+          ></ng-icon>
+          <!-- <fa-icon
             [icon]="faSun"
             class="mr-2 text-yellow-400 transition-opacity duration-500 opacity-100 fa-lg dark:opacity-0"
-          ></fa-icon>
+          ></fa-icon> -->
           <input
             type="checkbox"
             id="toggle"
@@ -41,10 +47,16 @@
           <div
             class="toggle-bg bg-gray-200 border-2 border-gray-200 dark:bg-blue-400 dark:border-blue-400 h-6 w-[2.8rem] rounded-full"
           ></div>
-          <fa-icon
+          <ng-icon
+            name="heroMoonSolid"
+            size="1.5rem"
+            color="white"
+            class="pl-2 transition-opacity duration-500 opacity-0 dark:opacity-100"
+          ></ng-icon>
+          <!-- <fa-icon
             [icon]="faMoon"
             class="ml-2 text-gray-300 transition-opacity duration-500 opacity-0 fa-lg dark:opacity-100"
-          ></fa-icon>
+          ></fa-icon> -->
         </label>
       </li>
       <li *ngIf="showLogout" class="dropdown-item">
