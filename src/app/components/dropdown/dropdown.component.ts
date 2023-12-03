@@ -9,7 +9,6 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { DropdownData } from 'src/app/shared/models/dropdown';
 
@@ -30,8 +29,6 @@ export class DropdownComponent {
   @ViewChild('dropdown')
   dropdown!: ElementRef;
   public isDarkTheme: Observable<boolean> = this.themeService.isDarkTheme;
-  public faMoon = faMoon;
-  public faSun = faSun;
   public dropdownOpen = false;
 
   constructor(private themeService: ThemeService, private renderer: Renderer2) {

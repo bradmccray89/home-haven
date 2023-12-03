@@ -10,13 +10,10 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewEncapsulation,
 } from '@angular/core';
-import { Observable, Subscription, Timestamp } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { faBell, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { DropdownData } from 'src/app/shared/models/dropdown';
 import { Notification } from 'src/app/shared/models/notification';
 
@@ -24,8 +21,6 @@ import { Notification } from 'src/app/shared/models/notification';
   selector: 'app-home-nav',
   templateUrl: './home-nav.component.html',
   styleUrls: ['./home-nav.component.scss'],
-  // TODO: Remove ViewEncapsulation.None
-  encapsulation: ViewEncapsulation.None,
   animations: [fadeFromLeft, fadeFromRight],
 })
 export class HomeNavComponent implements OnInit, OnDestroy {
@@ -36,8 +31,6 @@ export class HomeNavComponent implements OnInit, OnDestroy {
   public isDarkTheme: Observable<boolean> = this.themeService.isDarkTheme;
   public notificationDropdownOpen: boolean = false;
   public menuDropdownOpen: boolean = false;
-  public faBell = faBell;
-  public faMagnifyingGlass = faMagnifyingGlass;
   public notificationData = this.notificationService.notificationList;
   public notificationDropdownData!: Notification[];
   public notificationCount: number = 0;

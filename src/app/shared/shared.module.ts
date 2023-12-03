@@ -7,7 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NotificationDropdownComponent } from '../components/notification-dropdown/notification-dropdown.component';
 
 //Icon Imports
-import { heroXMark, heroBell } from '@ng-icons/heroicons/outline';
+import { heroXMark, heroBell, heroHome } from '@ng-icons/heroicons/outline';
 import {
   heroMoonSolid,
   heroSunSolid,
@@ -15,6 +15,20 @@ import {
   heroEyeSlashSolid,
 } from '@ng-icons/heroicons/solid';
 import { NgIconsModule } from '@ng-icons/core';
+import {
+  bootstrapSpeedometer,
+  bootstrapHouses,
+  bootstrapPeople,
+  bootstrapClipboard,
+  bootstrapCurrencyDollar,
+  bootstrapWrench,
+  bootstrapBarChart,
+  bootstrapFileEarmarkBarGraph,
+  bootstrapFolder,
+  bootstrapChatRight,
+  bootstrapGear,
+  bootstrapQuestionCircle,
+} from '@ng-icons/bootstrap-icons';
 
 const icons = {
   heroXMark,
@@ -23,6 +37,19 @@ const icons = {
   heroSunSolid,
   heroMoonSolid,
   heroBell,
+  heroHome,
+  bootstrapSpeedometer,
+  bootstrapHouses,
+  bootstrapPeople,
+  bootstrapClipboard,
+  bootstrapCurrencyDollar,
+  bootstrapWrench,
+  bootstrapBarChart,
+  bootstrapFileEarmarkBarGraph,
+  bootstrapFolder,
+  bootstrapChatRight,
+  bootstrapGear,
+  bootstrapQuestionCircle,
 };
 
 @NgModule({

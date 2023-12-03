@@ -27,6 +27,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.1.0",
     "@fortawesome/free-regular-svg-icons": "^6.1.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.0",
+    "@ng-icons/bootstrap-icons": "^26.1.0",
     "@ng-icons/core": "^25.2.0",
     "@ng-icons/heroicons": "^25.2.0",
     "ngx-toastr": "^17.0.2",

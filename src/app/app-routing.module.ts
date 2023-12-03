@@ -12,11 +12,6 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'app',
-    pathMatch: 'full',
-  },
-  {
-    path: 'app',
     loadChildren: () =>
       import('./layouts/home/home.module').then((m) => m.HomeModule),
     canActivate: [AngularFireAuthGuard],

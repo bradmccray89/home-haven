@@ -1,7 +1,7 @@
 import { fadeFromBottom } from './../../animations/fade';
 import { ThemeService } from './../../services/theme.service';
 import { ToastrService } from 'ngx-toastr';
-import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
@@ -19,8 +19,6 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  // TODO: Remove ViewEncapsulation.None
-  encapsulation: ViewEncapsulation.None,
   animations: [fadeFromBottom],
 })
 export class LoginComponent implements OnInit, OnDestroy {
