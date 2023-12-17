@@ -45,7 +45,7 @@ export class SidebarComponent implements OnInit {
       route: '/rent-management',
     },
     {
-      name: 'Maintenance Requests',
+      name: 'Maintenance',
       icon: 'bootstrapWrench',
       route: '/maintenance',
     },

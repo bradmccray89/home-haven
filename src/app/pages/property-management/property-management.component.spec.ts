@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PropertyListComponent } from './property-list.component';
+import { PropertyListComponent } from './property-management.component';
 
 describe('PropertyListComponent', () => {
   let component: PropertyListComponent;
@@ -8,9 +8,8 @@ describe('PropertyListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PropertyListComponent ]
-    })
-    .compileComponents();
+      declarations: [PropertyListComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
