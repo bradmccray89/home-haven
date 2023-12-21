@@ -1,4 +1,3 @@
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Subscription } from 'rxjs';
 import { UserProfile } from './../../shared/models/user-profile';
 import { Routes } from '@angular/router';
@@ -14,26 +13,17 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class HomeComponent implements OnInit, OnDestroy {
   public sidebarOpen = true;
   public links: Routes = [];
-  public currentUserProfile: UserProfile | undefined;
+  public currentUserProfile: UserProfile = new UserProfile();
   public subscriptions: Subscription[] = [];
   public dropdownOpen = false;
 
   constructor(
     private userService: UserService,
-    private auth: AngularFireAuth,
     private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
     const uid = localStorage.getItem('uid') || '';
-    const user = this.auth.currentUser;
-    this.subscriptions.push(
-      this.userService.getUserProfile(uid).subscribe((profile: any) => {
-        if (profile) {
-          this.currentUserProfile = profile;
-        }
-      })
-    );
   }
 
   ngOnDestroy() {

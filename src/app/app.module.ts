@@ -5,22 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgIconsModule } from '@ng-icons/core';
 
-// Firebase imports
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import {
-  provideAnalytics,
-  getAnalytics,
-  ScreenTrackingService,
-  UserTrackingService,
-} from '@angular/fire/analytics';
-import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideDatabase, getDatabase } from '@angular/fire/database';
-import { provideFunctions, getFunctions } from '@angular/fire/functions';
-import { provideMessaging, getMessaging } from '@angular/fire/messaging';
-import { providePerformance, getPerformance } from '@angular/fire/performance';
-import { provideStorage, getStorage } from '@angular/fire/storage';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-
 // App imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,14 +30,6 @@ import { PropertyTableComponent } from './components/property-table/property-tab
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAnalytics(() => getAnalytics()),
-    provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
-    provideFunctions(() => getFunctions()),
-    provideMessaging(() => getMessaging()),
-    providePerformance(() => getPerformance()),
-    provideStorage(() => getStorage()),
     SharedModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-center',
@@ -61,11 +37,7 @@ import { PropertyTableComponent } from './components/property-table/property-tab
       messageClass: 'border-l pl-3',
     }),
   ],
-  providers: [
-    ScreenTrackingService,
-    UserTrackingService,
-    { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

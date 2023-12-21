@@ -1,13 +1,12 @@
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  constructor(private firestore: AngularFirestore) {}
+  constructor() {}
 
-  public getUserProfile(uid: string): Observable<unknown> {
-    return this.firestore.doc(`/profiles/${uid}`).valueChanges();
+  public getUserProfile(uid: string) {
+    // return this.firestore.doc(`/profiles/${uid}`).valueChanges();
   }
 
   public logout() {

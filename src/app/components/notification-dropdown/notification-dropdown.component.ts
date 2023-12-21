@@ -1,5 +1,4 @@
 import { expand } from './../../animations/expand';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Notification } from './../../shared/models/notification';
 import {
   Component,
@@ -11,7 +10,6 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
@@ -28,7 +26,6 @@ export class NotificationDropdownComponent {
   @ViewChild('dropdown')
   dropdown!: ElementRef;
   public dropdownOpen: boolean = false;
-  public faXmark = faXmark;
 
   constructor(
     private renderer: Renderer2,

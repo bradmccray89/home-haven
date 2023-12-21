@@ -1,7 +1,6 @@
 import { fadeFromRight, fadeFromLeft } from './../../animations/fade';
 import { NotificationService } from './../../services/notification.service';
 import { UserProfile } from './../../shared/models/user-profile';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ThemeService } from './../../services/theme.service';
 import {
   Component,
@@ -25,7 +24,7 @@ import { Notification } from 'src/app/shared/models/notification';
 })
 export class HomeNavComponent implements OnInit, OnDestroy {
   @Input() sidebarOpen = true;
-  @Input() currentUserProfile: UserProfile | undefined;
+  @Input() currentUserProfile: UserProfile = new UserProfile();
   @Output() toggleSidebarEmit = new EventEmitter<boolean>(true);
   public subscriptions: Subscription[] = [];
   public isDarkTheme: Observable<boolean> = this.themeService.isDarkTheme;
@@ -55,7 +54,6 @@ export class HomeNavComponent implements OnInit, OnDestroy {
 
   constructor(
     private themeService: ThemeService,
-    private auth: AngularFireAuth,
     private titleService: Title,
     private router: Router,
     private notificationService: NotificationService
@@ -64,22 +62,23 @@ export class HomeNavComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const uid = localStorage.getItem('uid');
-    if (uid) {
-      this.subscriptions.push(
-        this.notificationService
-          .getNotificationsForUser(uid)
-          .subscribe((data) => {
-            data.map((item) => {
-              item.elapsedTime = this.getDateDifference(
-                new Date(item.createdAt.toDate())
-              );
-            });
-            this.notificationDropdownData = data;
-            this.notificationCount = data.length;
-          })
-      );
-    }
+    console.log(this.currentUserProfile);
+    // const uid = localStorage.getItem('uid');
+    // if (uid) {
+    //   this.subscriptions.push(
+    //     this.notificationService
+    //       .getNotificationsForUser(uid)
+    //       .subscribe((data) => {
+    //         data.map((item) => {
+    //           item.elapsedTime = this.getDateDifference(
+    //             new Date(item.createdAt.toDate())
+    //           );
+    //         });
+    //         this.notificationDropdownData = data;
+    //         this.notificationCount = data.length;
+    //       })
+    //   );
+    // }
   }
 
   ngOnDestroy(): void {
@@ -108,13 +107,15 @@ export class HomeNavComponent implements OnInit, OnDestroy {
   }
 
   public logout() {
-    this.auth.signOut().then(() => {
-      this.router.navigate(['/login']);
-      const theme = localStorage.getItem('theme') || 'light';
-      localStorage.clear();
-      localStorage.setItem('theme', theme);
-      this.themeService.setDarkTheme(theme === 'dark');
-    });
+    console.log('logout');
+    this.router.navigate(['/login']);
+    // this.auth.signOut().then(() => {
+    //   this.router.navigate(['/login']);
+    //   const theme = localStorage.getItem('theme') || 'light';
+    //   localStorage.clear();
+    //   localStorage.setItem('theme', theme);
+    //   this.themeService.setDarkTheme(theme === 'dark');
+    // });
   }
 
   private getDateDifference(date: Date) {
