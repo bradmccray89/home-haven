@@ -1,13 +1,13 @@
 <div
-  class="h-screen w-screen flex relative bg-neutral-200 dark:bg-zinc-800 transition-colors duration-500 ease-in-out"
+  class="relative flex w-screen h-screen transition-colors duration-500 ease-in-out bg-neutral-200 dark:bg-zinc-800"
 >
   <app-sidebar [currentUserProfile]="currentUserProfile"></app-sidebar>
-  <div class="h-full w-full flex flex-col">
+  <div class="flex flex-col w-full h-full">
     <app-home-nav
       class="flex-grow-0"
       [currentUserProfile]="currentUserProfile"
     ></app-home-nav>
-    <div class="flex-grow">
+    <div class="flex-grow overflow-y-auto">
       <router-outlet></router-outlet>
     </div>
   </div>

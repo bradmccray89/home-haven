@@ -366,8 +366,4 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
-
-  onImageLoad(event: any, property: any): void {
-    console.log('property', property);
-  }
 }

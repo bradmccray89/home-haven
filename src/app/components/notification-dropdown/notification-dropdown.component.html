@@ -9,7 +9,7 @@
   <div
     #dropdown
     *ngIf="dropdownOpen"
-    class="absolute right-1 sm:right-0 z-20 mt-3 sm:mt-1 max-h-[500px] min-w-[400px] sm:max-w-[95%] overflow-hidden bg-white rounded-md shadow-xl dark:bg-slate-700 border border-gray-300 dark:border-white text-gray-700 dark:text-white transition-colors duration-500 ease-in-out"
+    class="absolute right-1 sm:right-0 z-[99999] mt-3 sm:mt-1 max-h-[500px] min-w-[400px] sm:max-w-[95%] overflow-hidden bg-white rounded-md shadow-xl dark:bg-slate-700 border border-gray-300 dark:border-white text-gray-700 dark:text-white transition-colors duration-500 ease-in-out"
     @expand
   >
     <div
@@ -61,10 +61,11 @@
         <div
           class="flex items-center justify-center w-5 h-5 p-3 ml-3 rounded-full clickable text-black/50 dark:text-white/50"
         >
-          <fa-icon
-            [icon]="faXmark"
+          <ng-icon
+            name="bootstrapX"
+            class="text-xl"
             (click)="dismissNotification(item)"
-          ></fa-icon>
+          ></ng-icon>
         </div>
       </li>
     </ul>

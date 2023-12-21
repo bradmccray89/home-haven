@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NotificationDropdownComponent } from '../components/notification-dropdown/notification-dropdown.component';
+import { MatTableModule } from '@angular/material/table';
 
 //Icon Imports
 import { heroXMark, heroBell, heroHome } from '@ng-icons/heroicons/outline';
@@ -28,7 +28,10 @@ import {
   bootstrapChatRight,
   bootstrapGear,
   bootstrapQuestionCircle,
+  bootstrapX,
 } from '@ng-icons/bootstrap-icons';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 const icons = {
   heroXMark,
@@ -50,6 +53,7 @@ const icons = {
   bootstrapChatRight,
   bootstrapGear,
   bootstrapQuestionCircle,
+  bootstrapX,
 };
 
 @NgModule({
@@ -58,8 +62,10 @@ const icons = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
     NgIconsModule.withIcons(icons),
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   exports: [
     DropdownComponent,
@@ -68,8 +74,10 @@ const icons = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
     NgIconsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   declarations: [DropdownComponent, NotificationDropdownComponent],
   providers: [],

@@ -138,3 +138,15 @@ input:checked + .slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
+
+.page-container {
+  @apply flex flex-col items-center justify-start gap-4 h-full w-full p-4;
+}
+
+.page-header {
+  @apply flex flex-row items-center justify-center w-full h-16;
+}
+
+.page-content {
+  @apply flex flex-col items-center justify-start gap-4 w-full h-full overflow-y-auto;
+}
