@@ -24,6 +24,7 @@
     "@ng-icons/bootstrap-icons": "^26.1.0",
     "@ng-icons/core": "^25.2.0",
     "@ng-icons/heroicons": "^25.2.0",
+    "aws-amplify": "^6.0.9",
     "ngx-toastr": "^17.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
