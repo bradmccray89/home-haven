@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DropdownData } from 'src/app/shared/models/dropdown';
+import { DropdownData } from 'src/app/shared/models/dropdown.model';
 
 @Component({
   selector: 'app-dropdown',

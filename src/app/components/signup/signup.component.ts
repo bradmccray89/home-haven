@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { signUp } from 'aws-amplify/auth';
 
 @Component({
   selector: 'app-signup',
@@ -31,8 +32,23 @@ export class SignupComponent {
     );
   }
 
-  signup() {
-    console.log(this.signupForm.value);
+  async signup() {
+    try {
+      if (this.signupForm.invalid)
+        throw new Error('Please fill out all fields');
+      const { email, password } = this.signupForm.value;
+      const username = email;
+
+      const result = await signUp({
+        username,
+        password,
+        options: { userAttributes: { email }, autoSignIn: true },
+      });
+      console.log('result:', result);
+    } catch (error: any) {
+      console.log('error signing up:', error);
+      this.toastr.error(error.message);
+    }
     // this.auth
     //   .createUserWithEmailAndPassword(
     //     this.signupForm.value.email,

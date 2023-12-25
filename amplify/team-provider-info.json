@@ -10,6 +10,11 @@
       "StackName": "amplify-homehaven-dev-160525",
       "StackId": "arn:aws:cloudformation:us-east-1:482576304470:stack/amplify-homehaven-dev-160525/d4744320-a10d-11ee-8e9f-0addd5292e3d",
       "AmplifyAppId": "d1vvvpu2rsdcmt"
+    },
+    "categories": {
+      "auth": {
+        "homehavend14e5d5b": {}
+      }
     }
   }
 }

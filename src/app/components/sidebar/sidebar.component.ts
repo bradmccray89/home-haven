@@ -1,7 +1,7 @@
 import { fadeFromLeft } from './../../animations/fade';
 import { Component, Input, OnInit } from '@angular/core';
 import { Routes } from '@angular/router';
-import { UserProfile } from 'src/app/shared/models/user-profile';
+import { User } from 'src/app/shared/models/user.model';
 
 interface NavItem {
   name: string;
@@ -16,7 +16,7 @@ interface NavItem {
   animations: [fadeFromLeft],
 })
 export class SidebarComponent implements OnInit {
-  @Input() currentUserProfile: UserProfile | undefined;
+  @Input() currentUserProfile: User | undefined;
   @Input() links: Routes | undefined;
   navItems: NavItem[] = [
     {

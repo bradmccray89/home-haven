@@ -1,6 +1,7 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { fadeFromRight, fadeFromLeft } from './../../animations/fade';
 import { NotificationService } from './../../services/notification.service';
-import { UserProfile } from './../../shared/models/user-profile';
+import { User } from '../../shared/models/user.model';
 import { ThemeService } from './../../services/theme.service';
 import {
   Component,
@@ -13,8 +14,9 @@ import {
 import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { DropdownData } from 'src/app/shared/models/dropdown';
-import { Notification } from 'src/app/shared/models/notification';
+import { DropdownData } from 'src/app/shared/models/dropdown.model';
+import { Notification } from 'src/app/shared/models/notification.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-nav',
@@ -24,14 +26,14 @@ import { Notification } from 'src/app/shared/models/notification';
 })
 export class HomeNavComponent implements OnInit, OnDestroy {
   @Input() sidebarOpen = true;
-  @Input() currentUserProfile: UserProfile = new UserProfile();
+  @Input() currentUserProfile: User = new User();
   @Output() toggleSidebarEmit = new EventEmitter<boolean>(true);
   public subscriptions: Subscription[] = [];
   public isDarkTheme: Observable<boolean> = this.themeService.isDarkTheme;
   public notificationDropdownOpen: boolean = false;
   public menuDropdownOpen: boolean = false;
   public notificationData = this.notificationService.notificationList;
-  public notificationDropdownData!: Notification[];
+  public notificationDropdownData: Notification[] = [];
   public notificationCount: number = 0;
   public showNotifications: boolean = false;
   public dropdownData: DropdownData[] = [
@@ -53,10 +55,12 @@ export class HomeNavComponent implements OnInit, OnDestroy {
   ];
 
   constructor(
+    private authService: AuthService,
     private themeService: ThemeService,
     private titleService: Title,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private toastr: ToastrService
   ) {
     this.titleService.setTitle('HomeHaven');
   }
@@ -106,47 +110,12 @@ export class HomeNavComponent implements OnInit, OnDestroy {
     }
   }
 
-  public logout() {
-    console.log('logout');
-    this.router.navigate(['/login']);
-    // this.auth.signOut().then(() => {
-    //   this.router.navigate(['/login']);
-    //   const theme = localStorage.getItem('theme') || 'light';
-    //   localStorage.clear();
-    //   localStorage.setItem('theme', theme);
-    //   this.themeService.setDarkTheme(theme === 'dark');
-    // });
-  }
-
-  private getDateDifference(date: Date) {
-    const timeDifference = Math.abs(date.getTime() - new Date().getTime());
-    const diffDays = Math.floor(timeDifference / (1000 * 3600 * 24));
-    const diffHours = Math.floor(timeDifference / (1000 * 3600));
-    const diffMinutes = Math.floor(timeDifference / (1000 * 60));
-    if (diffDays <= 1) {
-      if (diffDays === 1) {
-        return `${diffDays} day ago`;
-      } else {
-        if (diffHours <= 1) {
-          if (diffHours === 1) {
-            return `${diffHours} hour ago`;
-          } else {
-            if (diffMinutes <= 1) {
-              if (diffMinutes === 1) {
-                return `${diffMinutes} minute ago`;
-              } else {
-                return 'Less than a minute ago';
-              }
-            } else {
-              return `${diffMinutes} minutes ago`;
-            }
-          }
-        } else {
-          return `${diffHours} hours ago`;
-        }
-      }
-    } else {
-      return `${diffDays} days ago`;
+  async signOut() {
+    try {
+      const result = await this.authService.signOut();
+      this.router.navigate(['/login']);
+    } catch (error: any) {
+      this.toastr.error(error.message);
     }
   }
 }

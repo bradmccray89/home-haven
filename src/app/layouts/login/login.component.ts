@@ -7,6 +7,13 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable, Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import {
+  signIn,
+  signOut,
+  type SignInInput,
+  type SignOutInput,
+} from 'aws-amplify/auth';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public email = new FormControl('', [Validators.required, Validators.email]);
   public password = new FormControl('', [Validators.required]);
   public loginForm = new FormGroup({
-    email: this.email,
+    username: this.email,
     password: this.password,
   });
   public showPassword: boolean = false;
@@ -32,60 +39,55 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private themeService: ThemeService,
     private titleService: Title,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) {
     this.titleService.setTitle('Login | HomeHaven');
   }
 
   ngOnInit(): void {
-    // this.authSubscribe = this.auth.authState.subscribe((user) => {
-    //   if (user && user.metadata.lastSignInTime) {
-    //     this.auth.signOut();
-    //     this.userService.logout();
-    //   }
-    // });
+    if (this.authService.isSignedIn.value) {
+      this.userService
+        .fetchUserAttributes()
+        .then((attributes) => {
+          if (attributes) {
+            this.toastr.success('Already signed in as ' + attributes.email);
+            this.router.navigate(['/']);
+          }
+        })
+        .catch((error) => {
+          this.toastr.error(error.message);
+        });
+    }
   }
 
   ngOnDestroy(): void {
     this.authSubscribe?.unsubscribe();
   }
 
-  login() {
-    // if (this.loginForm.invalid || !this.email.value || !this.password.value)
-    //   return;
-    console.log(this.email.value, this.password.value);
-    this.router.navigate(['/']);
-    // this.auth
-    //   .signInWithEmailAndPassword(this.email.value, this.password.value)
-    //   .then((response) => {
-    //     this.authSubscribe?.unsubscribe();
-    //     if (response.user) {
-    //       localStorage.setItem('uid', response.user.uid);
-    //     }
-    //     this.router.navigate(['/']);
-    //   })
-    //   .catch((error) => {
-    //     switch (error.code) {
-    //       case 'auth/invalid-email':
-    //         this.toastr.error('Invalid login');
-    //         break;
-    //       case 'auth/user-disabled':
-    //         this.toastr.error('User disabled');
-    //         break;
-    //       case 'auth/user-not-found':
-    //         this.toastr.error('User not found');
-    //         break;
-    //       case 'auth/wrong-password':
-    //         this.toastr.error('Invalid login');
-    //         break;
-    //       default:
-    //         this.toastr.error('Something went wrong');
-    //         break;
-    //     }
-    //   });
+  async handleSignIn() {
+    try {
+      const { username, password } = this.loginForm.value;
+      if (!username || !password) return;
+      const { isSignedIn, nextStep } = await this.authService.signIn(
+        username,
+        password
+      );
+      this.authService.isSignedIn.next(isSignedIn);
+      if (isSignedIn && nextStep.signInStep === 'DONE') {
+        this.router.navigate(['/']);
+      }
+    } catch (error: any) {
+      if (error.toString().includes('UserAlreadyAuthenticatedException')) {
+        this.toastr.error('You are already signed in');
+        this.router.navigate(['/']);
+      } else {
+        this.toastr.error(error.message);
+      }
+    }
   }
 
-  signup() {
+  signUp() {
     this.showSignup = true;
     this.titleService.setTitle('Signup | HomeHaven');
   }

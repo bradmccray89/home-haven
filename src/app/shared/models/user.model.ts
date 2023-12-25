@@ -1,4 +1,4 @@
-export class UserProfile {
+export class User {
   email: string;
   firstName: string;
   lastName: string;
@@ -31,5 +31,19 @@ export class UserProfile {
     this.lastSignInTime = '2021-01-01';
     this.isEmailVerified = false;
     this.isPhoneVerified = false;
+  }
+}
+
+export class UserSignUp {
+  username: string;
+  password: string;
+  email: string;
+  phone_number: string;
+
+  constructor(data: any) {
+    this.username = data.username;
+    this.password = data.password;
+    this.email = data.email;
+    this.phone_number = data.phone_number;
   }
 }

@@ -1,6 +1,7 @@
 import { ThemeService } from './services/theme.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,17 @@ export class AppComponent implements OnInit {
   isDarkTheme: Observable<boolean> = this.themeService.isDarkTheme;
   themeStored: string | null = '';
 
-  constructor(private themeService: ThemeService) {}
+  @HostListener('window:beforeunload', ['$event']) unloadHandler(event: Event) {
+    localStorage.setItem(
+      'isSignedIn',
+      JSON.stringify(this.authService.isSignedIn.value)
+    );
+  }
+
+  constructor(
+    private themeService: ThemeService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.themeStored = localStorage.getItem('theme');

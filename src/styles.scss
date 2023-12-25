@@ -1,7 +1,6 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
-// Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -38,6 +37,8 @@ $home-haven-theme: mat.define-light-theme(
 @tailwind components;
 @tailwind utilities;
 
+@import "~@aws-amplify/ui-angular/theme.css";
+
 html,
 body {
   height: 100vh;
@@ -60,7 +61,6 @@ body {
   text-gray-900
   dark:text-gray-100
   dark:bg-slate-500
-  placeholder-transparent
   focus:outline-none
   focus:border-blue-400
   transition-colors

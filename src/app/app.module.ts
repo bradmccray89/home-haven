@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
-import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { NgIconsModule } from '@ng-icons/core';
+
+// Amplify imports
+import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
+import amplifyconfig from '../amplifyconfiguration.json';
+import { Amplify } from 'aws-amplify';
 
 // App imports
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +18,9 @@ import { PropertyDialogComponent } from './components/property-dialog/property-d
 import { SignupComponent } from './components/signup/signup.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { PropertyTableComponent } from './components/property-table/property-table.component';
+
+// Amplify configuration
+Amplify.configure(amplifyconfig);
 
 @NgModule({
   declarations: [
@@ -36,6 +42,7 @@ import { PropertyTableComponent } from './components/property-table/property-tab
       toastClass: 'ngx-toastr rounded-md',
       messageClass: 'border-l pl-3',
     }),
+    AmplifyAuthenticatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

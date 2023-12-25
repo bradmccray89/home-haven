@@ -12,33 +12,41 @@
     ></ng-icon>
   </button>
   <form
-    class="min-w-[220px] w-[95%] max-w-[350px] flex flex-col gap-y-6"
+    class="min-w-[220px] w-[95%] max-w-[350px] flex flex-col gap-y-8"
     [formGroup]="signupForm"
   >
     <div class="relative">
+      <label
+        for="email"
+        class="input-label"
+        *ngIf="signupForm.value.email?.length"
+      >
+        Email
+      </label>
       <input
         id="email"
         name="email"
         formControlName="email"
         type="text"
-        class="input-field peer"
-        placeholder="email"
+        class="input-field"
+        placeholder="Email"
       />
-      <label
-        for="email"
-        class="input-label peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-black dark:peer-focus:text-gray-100 peer-focus:text-sm"
-      >
-        Email
-      </label>
     </div>
     <div class="relative">
+      <label
+        for="password"
+        class="input-label"
+        *ngIf="signupForm.value.password?.length"
+      >
+        Password
+      </label>
       <input
         id="password"
         name="password"
         formControlName="password"
         [type]="showPassword ? 'text' : 'password'"
-        class="input-field peer"
-        placeholder="password"
+        class="input-field"
+        placeholder="Password"
       />
       <div
         class="absolute text-black transition-colors duration-500 ease-in-out cursor-pointer right-2 top-2 md:-right-7 md:top-2 dark:text-white"
@@ -46,33 +54,27 @@
         (click)="togglePassword()"
       >
         <ng-icon
-          [name]="showPassword ? 'heroEyeSlash' : 'heroEye'"
+          [name]="showPassword ? 'heroEyeSlashSolid' : 'heroEyeSolid'"
           size="1.5rem"
         ></ng-icon>
       </div>
-      <label
-        for="password"
-        class="input-label peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-black dark:peer-focus:text-gray-100 peer-focus:text-sm"
-      >
-        Password
-      </label>
     </div>
     <div class="relative">
+      <label
+        for="confirm"
+        class="input-label"
+        *ngIf="signupForm.value.confirmPassword?.length"
+      >
+        Confirm Password
+      </label>
       <input
         id="confirm"
         name="confirm"
         formControlName="confirmPassword"
         type="password"
-        class="input-field peer"
-        placeholder="confirm password"
+        class="input-field"
+        placeholder="Confirm Password"
       />
-
-      <label
-        for="confirm"
-        class="input-label peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-black dark:peer-focus:text-gray-100 peer-focus:text-sm"
-      >
-        Confirm Password
-      </label>
     </div>
     <button
       class="w-full p-2 text-white bg-blue-400 rounded-lg hover:bg-blue-500 active:bg-blue-600 disabled:hover:bg-blue-400 outline-offset-2"

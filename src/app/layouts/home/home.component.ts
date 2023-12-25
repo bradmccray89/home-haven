@@ -1,9 +1,11 @@
 import { Subscription } from 'rxjs';
-import { UserProfile } from './../../shared/models/user-profile';
-import { Routes } from '@angular/router';
+import { User } from '../../shared/models/user.model';
+import { Router, Routes } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -13,25 +15,41 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class HomeComponent implements OnInit, OnDestroy {
   public sidebarOpen = true;
   public links: Routes = [];
-  public currentUserProfile: UserProfile = new UserProfile();
+  public currentUserProfile: User = new User();
   public subscriptions: Subscription[] = [];
   public dropdownOpen = false;
 
   constructor(
     private userService: UserService,
-    private loadingService: LoadingService
+    private authService: AuthService,
+    private loadingService: LoadingService,
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
-  ngOnInit() {
-    const uid = localStorage.getItem('uid') || '';
+  async ngOnInit() {
+    try {
+      const result = await this.userService.fetchUserAttributes();
+      if (!result) {
+        throw new Error('No user found');
+      }
+    } catch (error: any) {
+      this.toastr.error(error.message);
+      this.signOut();
+    }
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  logout() {
-    this.userService.logout();
+  async signOut() {
+    try {
+      await this.authService.signOut();
+      this.router.navigate(['/login']);
+    } catch (error: any) {
+      this.toastr.error(error.message);
+    }
   }
 
   public toggleSidebar(open = true) {

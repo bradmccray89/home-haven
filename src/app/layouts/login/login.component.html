@@ -7,10 +7,11 @@
     alt=""
   />
   <div
-    class="z-10 flex items-center justify-center w-full h-full transition duration-500 ease-in-out bg-white/75 dark:bg-slate-800 md:bg-white/20 md:dark:bg-black/50"
+    class="z-10 flex items-center justify-center w-full h-full transition-colors duration-500 ease-in-out bg-white/75 dark:bg-slate-800 md:bg-white/20 md:dark:bg-black/50"
   >
+    <!-- TODO: Put signup and forgot password on separate pages -->
     <div
-      class="h-full md:h-[500px] min-h-fit w-full md:w-[800px] md:max-w-[800px] md:bg-white/75 md:dark:bg-slate-800/75 backdrop-blur-md md:rounded-xl flex flex-col justify-between items-center overflow-x-hidden p-12 pb-32 md:pb-12 transition duration-500 ease-in-out"
+      class="h-full md:h-[500px] min-h-fit w-full md:w-[800px] md:max-w-[800px] md:bg-white/75 md:dark:bg-slate-800/75 backdrop-blur-md md:rounded-xl flex flex-col justify-between items-center overflow-x-hidden p-12 pb-32 md:pb-12 transition-colors duration-500 ease-in-out"
       *ngIf="!showSignup && !showForgotPassword"
       @fadeFromBottom
     >
@@ -18,32 +19,47 @@
       <form
         class="min-w-[220px] w-[95%] max-w-[350px] flex flex-col gap-y-5"
         [formGroup]="loginForm"
+        (ngSubmit)="handleSignIn()"
       >
         <div class="relative mb-6">
+          <label
+            for="signInEmail"
+            class="input-label"
+            *ngIf="loginForm.value.username?.length"
+          >
+            Email
+          </label>
           <input
             id="signInEmail"
             name="email"
-            formControlName="email"
+            formControlName="username"
             type="text"
-            class="input-field peer"
-            placeholder="email"
+            class="input-field"
+            placeholder="Email"
             autocomplete="true"
           />
-          <label
+          <!-- <label
             for="signInEmail"
             class="input-label peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-black dark:peer-focus:text-gray-100 peer-focus:text-sm"
           >
             Email
-          </label>
+          </label> -->
         </div>
         <div class="relative">
+          <label
+            for="password"
+            class="input-label"
+            *ngIf="loginForm.value.password?.length"
+          >
+            Password
+          </label>
           <input
             id="password"
             name="password"
             formControlName="password"
             [type]="showPassword ? 'text' : 'password'"
-            class="input-field peer"
-            placeholder="password"
+            class="input-field"
+            placeholder="Password"
             autocomplete="true"
           />
           <div
@@ -57,12 +73,12 @@
               size="1.5rem"
             ></ng-icon>
           </div>
-          <label
+          <!-- <label
             for="password"
             class="absolute text-sm text-black transition-colors left-2 -top-5 dark:text-gray-100 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-black dark:peer-focus:text-gray-100 peer-focus:text-sm"
           >
             Password
-          </label>
+          </label> -->
         </div>
         <div class="flex items-center justify-end w-full">
           <button
@@ -76,7 +92,6 @@
         <button
           class="w-full p-2 mt-5 text-white bg-blue-400 rounded-lg hover:bg-blue-500 active:bg-blue-600 outline-offset-2"
           type="submit"
-          (click)="login()"
         >
           Sign In
         </button>
@@ -85,8 +100,8 @@
         class="text-black transition-colors duration-500 ease-in-out dark:text-gray-100"
       >
         No Account?
-        <button class="text-blue-400 hover:underline" (click)="signup()">
-          Create one
+        <button class="text-blue-400 hover:underline" (click)="signUp()">
+          Sign Up
         </button>
       </div>
     </div>
@@ -119,7 +134,7 @@
       ></app-forgot-password>
     </div>
   </div>
-  <!-- <div
+  <div
     class="absolute top-auto flex items-center justify-center w-full px-5 bottom-5 md:bottom-auto md:top-5 md:justify-end"
   >
     <button
@@ -132,5 +147,5 @@
         class="text-gray-800 dark:text-gray-200"
       ></ng-icon>
     </button>
-  </div> -->
+  </div>
 </div>

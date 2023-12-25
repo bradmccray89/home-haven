@@ -4,17 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
-
-interface Tenant {
-  id: number;
-  name: string;
-  property?: string;
-  leaseStartDate?: Date;
-  leaseEndDate?: Date;
-  rentAmount?: number;
-  paymentStatus?: string;
-  contactInfo: string;
-}
+import { Tenant } from 'src/app/shared/models/tenant.model';
 
 @Component({
   selector: 'app-tenant-management',

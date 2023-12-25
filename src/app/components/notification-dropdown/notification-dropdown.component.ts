@@ -1,5 +1,5 @@
 import { expand } from './../../animations/expand';
-import { Notification } from './../../shared/models/notification';
+import { Notification } from '../../shared/models/notification.model';
 import {
   Component,
   ElementRef,
@@ -41,6 +41,10 @@ export class NotificationDropdownComponent {
         this.dropdownIsOpenEmitter.emit(this.dropdownOpen);
       }
     });
+  }
+
+  ngOnInit(): void {
+    console.log(this.data);
   }
 
   toggleDropdown() {

@@ -20,6 +20,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "qrcode",
+              "lodash",
+              "style-dictionary"
+            ],
             "outputPath": "dist/home-haven",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -114,8 +119,6 @@
     }
   },
   "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "schematicCollections": ["@angular-eslint/schematics"]
   }
 }
