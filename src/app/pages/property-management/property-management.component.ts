@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PropertyManagementComponent implements OnInit {
   propertyList: any[] = [];
 
-  constructor(private storage: Storage) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

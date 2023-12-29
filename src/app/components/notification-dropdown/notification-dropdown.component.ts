@@ -43,9 +43,7 @@ export class NotificationDropdownComponent {
     });
   }
 
-  ngOnInit(): void {
-    console.log(this.data);
-  }
+  ngOnInit(): void {}
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;

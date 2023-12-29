@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { Tenant } from 'src/app/shared/models/tenant.model';
+import { TenantService } from 'src/app/services/tenant.service';
 
 @Component({
   selector: 'app-tenant-management',
@@ -102,7 +103,7 @@ export class TenantManagementComponent implements AfterViewInit {
   randomFromArray = (array: string[]) =>
     array[Math.floor(Math.random() * array.length)];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private tenantService: TenantService) {
     // make 100 rows of data with randomized values
     for (let i = 0; i < 100; i++) {
       const startDate = this.randomDate();
@@ -118,6 +119,7 @@ export class TenantManagementComponent implements AfterViewInit {
         contactInfo: this.randomFromArray(this.properties),
       });
     }
+    this.tenantService.tenantList = this.tenantList;
     this.dataSource = new MatTableDataSource(this.tenantList);
   }
 
@@ -143,7 +145,6 @@ export class TenantManagementComponent implements AfterViewInit {
   }
 
   selectTenant(tenant: Tenant) {
-    console.log(tenant);
     this.router.navigate(['/tenants', tenant.id]);
   }
 }

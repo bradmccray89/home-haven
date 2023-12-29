@@ -66,7 +66,6 @@ export class HomeNavComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log(this.currentUserProfile);
     // const uid = localStorage.getItem('uid');
     // if (uid) {
     //   this.subscriptions.push(

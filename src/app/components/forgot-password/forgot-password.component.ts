@@ -18,7 +18,6 @@ export class ForgotPasswordComponent {
   constructor(private toastr: ToastrService) {}
 
   sendForgotPassword() {
-    console.log(this.email.value);
     // if (this.forgotPasswordForm.invalid || !this.email.value) return;
     // this.auth
     //   .sendPasswordResetEmail(this.email.value)

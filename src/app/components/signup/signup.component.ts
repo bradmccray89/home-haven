@@ -44,9 +44,7 @@ export class SignupComponent {
         password,
         options: { userAttributes: { email }, autoSignIn: true },
       });
-      console.log('result:', result);
     } catch (error: any) {
-      console.log('error signing up:', error);
       this.toastr.error(error.message);
     }
     // this.auth
