@@ -108,15 +108,18 @@ export class TenantManagementComponent implements AfterViewInit {
     for (let i = 0; i < 100; i++) {
       const startDate = this.randomDate();
       const endDate = this.randomDate(startDate.toString());
+      const name = this.randomFromArray(this.names);
       this.tenantList.push({
         id: i,
-        name: this.randomFromArray(this.names),
+        name: name,
+        email: name.replace(' ', '.').toLowerCase() + '@gmail.com',
         property: this.randomFromArray(this.properties),
         leaseStartDate: startDate,
         leaseEndDate: endDate,
         rentAmount: this.randomAmount(),
         paymentStatus: this.randomFromArray(this.paidStatuses),
         contactInfo: this.randomFromArray(this.properties),
+        profilePicture: '',
       });
     }
     this.tenantService.tenantList = this.tenantList;

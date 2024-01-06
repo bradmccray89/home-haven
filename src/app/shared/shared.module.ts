@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificationDropdownComponent } from '../components/notification-dropdown/notification-dropdown.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 
 //Icon Imports
 import { heroXMark, heroBell, heroHome } from '@ng-icons/heroicons/outline';
@@ -66,6 +67,7 @@ const icons = {
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatTabsModule,
   ],
   exports: [
     DropdownComponent,
@@ -78,6 +80,7 @@ const icons = {
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatTabsModule,
   ],
   declarations: [DropdownComponent, NotificationDropdownComponent],
   providers: [],

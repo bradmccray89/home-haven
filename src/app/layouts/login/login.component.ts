@@ -80,6 +80,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     } catch (error: any) {
       if (error.toString().includes('UserAlreadyAuthenticatedException')) {
         this.toastr.error('You are already signed in');
+        this.authService.isSignedIn.next(true);
         this.router.navigate(['/']);
       } else {
         this.toastr.error(error.message);

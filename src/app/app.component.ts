@@ -2,6 +2,7 @@ import { ThemeService } from './services/theme.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from './services/auth.service';
+import { TenantService } from './services/tenant.service';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +19,16 @@ export class AppComponent implements OnInit {
       'isSignedIn',
       JSON.stringify(this.authService.isSignedIn.value)
     );
+    localStorage.setItem(
+      'tenantList',
+      JSON.stringify(this.tenantService.tenantList)
+    );
   }
 
   constructor(
     private themeService: ThemeService,
-    private authService: AuthService
+    private authService: AuthService,
+    private tenantService: TenantService
   ) {}
 
   ngOnInit() {
