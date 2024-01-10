@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificationDropdownComponent } from '../components/notification-dropdown/notification-dropdown.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 //Icon Imports
 import { heroXMark, heroBell, heroHome } from '@ng-icons/heroicons/outline';
@@ -63,6 +64,8 @@ const icons = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
     NgIconsModule.withIcons(icons),
     MatTableModule,
     MatPaginatorModule,
@@ -76,6 +79,8 @@ const icons = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
     NgIconsModule,
     MatTableModule,
     MatPaginatorModule,
@@ -83,7 +88,7 @@ const icons = {
     MatTabsModule,
   ],
   declarations: [DropdownComponent, NotificationDropdownComponent],
-  providers: [],
+  providers: [provideNgxMask()],
 })
 export class SharedModule {
   static forRoot() {

@@ -1,0 +1,176 @@
+<form [formGroup]="tenantProfileForm" class="flex flex-wrap gap-4 mt-4">
+  <div class="w-[350px] input-container">
+    <label
+      for="name"
+      class="input-label"
+      *ngIf="tenantProfileForm.value.name?.length"
+    >
+      Name
+    </label>
+    <input
+      type="text"
+      id="name"
+      formControlName="name"
+      class="input-field"
+      placeholder="Name"
+    />
+  </div>
+  <div class="w-[400px] input-container">
+    <label
+      for="email"
+      class="input-label"
+      *ngIf="tenantProfileForm.value.email?.length"
+    >
+      Email
+    </label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      class="input-field"
+      placeholder="Email"
+    />
+  </div>
+  <div class="input-container w-[250px]">
+    <label
+      for="phone"
+      class="input-label"
+      *ngIf="tenantProfileForm.value.phone?.length"
+    >
+      Phone
+    </label>
+    <input
+      type="text"
+      id="phone"
+      formControlName="phone"
+      class="input-field"
+      placeholder="Phone"
+      mask="(000) 000-0000"
+    />
+  </div>
+  <div class="input-container w-[350px]">
+    <label
+      for="address"
+      class="input-label"
+      *ngIf="tenantProfileForm.value.address?.length"
+    >
+      Address
+    </label>
+    <input
+      type="text"
+      id="address"
+      formControlName="address"
+      class="input-field"
+      placeholder="Address"
+    />
+  </div>
+  <div class="input-container w-[250px]">
+    <label
+      for="city"
+      class="input-label"
+      *ngIf="tenantProfileForm.value.city?.length"
+    >
+      City
+    </label>
+    <input
+      type="text"
+      id="city"
+      formControlName="city"
+      class="input-field"
+      placeholder="City"
+    />
+  </div>
+  <div class="w-12 input-container">
+    <label
+      for="state"
+      class="input-label"
+      *ngIf="tenantProfileForm.value.state?.length"
+    >
+      State
+    </label>
+    <input
+      type="text"
+      id="state"
+      formControlName="state"
+      class="input-field"
+      placeholder="State"
+    />
+  </div>
+  <div class="input-container w-[150px]">
+    <label
+      for="zip"
+      class="input-label"
+      *ngIf="tenantProfileForm.value.zip?.length"
+    >
+      Zip
+    </label>
+    <input
+      type="text"
+      id="zip"
+      formControlName="zip"
+      class="input-field"
+      placeholder="Zip"
+    />
+  </div>
+  <div class="input-container w-[250px]">
+    <label
+      for="leaseStartDate"
+      class="input-label"
+      *ngIf="tenantProfileForm.value.leaseStartDate?.length"
+    >
+      Lease Start Date
+    </label>
+    <input
+      type="date"
+      id="leaseStartDate"
+      formControlName="leaseStartDate"
+      class="input-field"
+      placeholder="Lease Start Date"
+    />
+  </div>
+  <div class="input-container w-[250px]">
+    <label
+      for="leaseEndDate"
+      class="input-label"
+      *ngIf="tenantProfileForm.value.leaseEndDate?.length"
+    >
+      Lease End Date
+    </label>
+    <input
+      type="date"
+      id="leaseEndDate"
+      formControlName="leaseEndDate"
+      class="input-field"
+      placeholder="Lease End Date"
+    />
+  </div>
+  <div class="input-container w-[250px]">
+    <label for="rentAmount" class="input-label"> Rent Amount </label>
+    <input
+      type="text"
+      id="rentAmount"
+      formControlName="rentAmount"
+      class="input-field"
+      placeholder="Rent Amount"
+      prefix="$ "
+      mask="separator.2"
+      thousandSeparator=","
+    />
+  </div>
+  <div class="input-container w-[250px]">
+    <label
+      for="paymentStatus"
+      class="input-label"
+      *ngIf="tenantProfileForm.value.paymentStatus?.length"
+    >
+      Payment Status
+    </label>
+    <input
+      type="text"
+      id="paymentStatus"
+      formControlName="paymentStatus"
+      class="input-field"
+      placeholder="Payment Status"
+    />
+  </div>
+</form>

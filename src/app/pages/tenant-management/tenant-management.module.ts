@@ -5,6 +5,7 @@ import { TenantManagementRoutingModule } from './tenant-management-routing.modul
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TenantDetailsComponent } from 'src/app/components/tenant-details/tenant-details.component';
 import { AddTenantComponent } from 'src/app/components/add-tenant/add-tenant.component';
+import { TenantProfileComponent } from 'src/app/components/tenant-profile/tenant-profile.component';
 
 @NgModule({
   imports: [CommonModule, TenantManagementRoutingModule, SharedModule],
@@ -12,6 +13,7 @@ import { AddTenantComponent } from 'src/app/components/add-tenant/add-tenant.com
     TenantManagementComponent,
     TenantDetailsComponent,
     AddTenantComponent,
+    TenantProfileComponent,
   ],
 })
 export class TenantManagementModule {}

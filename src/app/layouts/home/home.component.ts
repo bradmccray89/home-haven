@@ -27,32 +27,34 @@ export class HomeComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
 
-  async ngOnInit() {
-    try {
-      const result = await this.userService.fetchUserAttributes();
-      if (!result) {
-        throw new Error('No user found');
-      }
-    } catch (error: any) {
-      this.toastr.error(error.message);
-      this.signOut();
-    }
+  ngOnInit() {
+    this.userService
+      .fetchUserAttributes()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+        this.toastr.error(error.message);
+      });
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  async signOut() {
-    try {
-      await this.authService.signOut();
-      this.router.navigate(['/login']);
-    } catch (error: any) {
-      this.toastr.error(error.message);
-    }
+  signOut() {
+    this.authService
+      .signOut()
+      .then(() => {
+        this.router.navigate(['/login']);
+      })
+      .catch((error) => {
+        this.toastr.error(error.message);
+      });
   }
 
-  public toggleSidebar(open = true) {
+  toggleSidebar(open = true) {
     this.sidebarOpen = open;
   }
 

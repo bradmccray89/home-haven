@@ -20,7 +20,15 @@
         (selectedTabChange)="handleSelectedTabChange($event.index)"
       >
         <mat-tab label="Profile">
-          <div class="w-full h-full p-4">Profile Content</div>
+          <ng-template matTabContent>
+            <div class="p-4">
+              <app-tenant-profile
+                [tenant]="tenant"
+                (tenantUpdated)="handleTenantUpdated($event)"
+              >
+              </app-tenant-profile>
+            </div>
+          </ng-template>
         </mat-tab>
         <mat-tab label="Payments">
           <div class="w-full h-full p-4">Payments Content</div>

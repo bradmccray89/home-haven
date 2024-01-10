@@ -87,6 +87,111 @@ export class TenantManagementComponent implements AfterViewInit {
     '2223 Willow Dr',
     '2324 Ash Ct',
   ];
+  cities = [
+    'New York',
+    'Los Angeles',
+    'Chicago',
+    'Houston',
+    'Phoenix',
+    'Philadelphia',
+    'San Antonio',
+    'San Diego',
+    'Dallas',
+    'San Jose',
+    'Austin',
+    'Jacksonville',
+    'Fort Worth',
+    'Columbus',
+    'Charlotte',
+    'San Francisco',
+    'Indianapolis',
+    'Seattle',
+    'Denver',
+    'Washington',
+    'Boston',
+    'El Paso',
+    'Nashville',
+    'Detroit',
+    'Oklahoma City',
+    'Portland',
+    'Las Vegas',
+    'Memphis',
+    'Louisville',
+    'Baltimore',
+    'Milwaukee',
+    'Albuquerque',
+    'Tucson',
+    'Fresno',
+    'Mesa',
+    'Sacramento',
+    'Atlanta',
+    'Kansas City',
+    'Colorado Springs',
+    'Miami',
+    'Raleigh',
+    'Omaha',
+    'Long Beach',
+    'Virginia Beach',
+    'Oakland',
+    'Minneapolis',
+    'Tulsa',
+    'Tampa',
+    'Arlington',
+    'New Orleans',
+  ];
+  states = [
+    'AL',
+    'AK',
+    'AZ',
+    'AR',
+    'CA',
+    'CO',
+    'CT',
+    'DE',
+    'FL',
+    'GA',
+    'HI',
+    'ID',
+    'IL',
+    'IN',
+    'IA',
+    'KS',
+    'KY',
+    'LA',
+    'ME',
+    'MD',
+    'MA',
+    'MI',
+    'MN',
+    'MS',
+    'MO',
+    'MT',
+    'NE',
+    'NV',
+    'NH',
+    'NJ',
+    'NM',
+    'NY',
+    'NC',
+    'ND',
+    'OH',
+    'OK',
+    'OR',
+    'PA',
+    'RI',
+    'SC',
+    'SD',
+    'TN',
+    'TX',
+    'VI',
+    'UT',
+    'VT',
+    'VA',
+    'WA',
+    'WV',
+    'WI',
+    'WY',
+  ];
   paidStatuses = ['Paid', 'Unpaid', 'Partial'];
 
   // Helper functions
@@ -102,6 +207,18 @@ export class TenantManagementComponent implements AfterViewInit {
   randomAmount = () => Math.floor(Math.random() * 10000);
   randomFromArray = (array: string[]) =>
     array[Math.floor(Math.random() * array.length)];
+  randomIndexFromArray = (array: any[]) => {
+    return Math.floor(Math.random() * array.length);
+  };
+  randomPhoneNumber = () => {
+    return Math.floor(Math.random() * 10000000000)
+      .toString()
+      .padStart(10, '0');
+  };
+  randomZipCode = () => {
+    const zip = Math.floor(Math.random() * 100000);
+    return zip.toString().padStart(5, '0');
+  };
 
   constructor(private router: Router, private tenantService: TenantService) {
     // make 100 rows of data with randomized values
@@ -113,12 +230,16 @@ export class TenantManagementComponent implements AfterViewInit {
         id: i,
         name: name,
         email: name.replace(' ', '.').toLowerCase() + '@gmail.com',
-        property: this.randomFromArray(this.properties),
+        phone: this.randomPhoneNumber(),
+        propertyId: this.randomIndexFromArray(this.properties),
+        address: this.randomFromArray(this.properties),
+        city: this.randomFromArray(this.cities),
+        state: this.randomFromArray(this.states),
+        zip: this.randomZipCode(),
         leaseStartDate: startDate,
         leaseEndDate: endDate,
         rentAmount: this.randomAmount(),
         paymentStatus: this.randomFromArray(this.paidStatuses),
-        contactInfo: this.randomFromArray(this.properties),
         profilePicture: '',
       });
     }

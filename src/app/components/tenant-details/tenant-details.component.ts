@@ -32,7 +32,6 @@ export class TenantDetailsComponent implements OnInit {
   }
 
   handleSelectedTabChange(tabIndex: number) {
-    console.log(tabIndex);
     switch (tabIndex) {
       case 0:
         this.tenantProfile = this.tenantService.getTenantProfileById(
@@ -62,5 +61,9 @@ export class TenantDetailsComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  handleTenantUpdated(event: any) {
+    console.log('Tenant updated: ', event);
   }
 }
