@@ -64,7 +64,7 @@
           />
           <div
             class="absolute text-black transition-colors duration-500 ease-in-out cursor-pointer right-2 top-2 md:-right-7 md:top-2 dark:text-white"
-            *ngIf="password.value != null && password.value.length > 0"
+            *ngIf="password.value !== null && password.value.length > 0"
             [title]="showPassword ? 'Hide Password' : 'Show Password'"
             (click)="togglePassword()"
           >

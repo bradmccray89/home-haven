@@ -37,8 +37,6 @@ $home-haven-theme: mat.define-light-theme(
 @tailwind components;
 @tailwind utilities;
 
-@import "~@aws-amplify/ui-angular/theme.css";
-
 html,
 body {
   height: 100vh;

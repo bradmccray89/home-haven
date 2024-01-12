@@ -7,12 +7,6 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable, Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-import {
-  signIn,
-  signOut,
-  type SignInInput,
-  type SignOutInput,
-} from 'aws-amplify/auth';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({

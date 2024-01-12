@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 // Amplify imports
-import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 import amplifyconfig from '../amplifyconfiguration.json';
 import { Amplify } from 'aws-amplify';
 
@@ -42,7 +41,6 @@ Amplify.configure(amplifyconfig);
       toastClass: 'ngx-toastr rounded-md',
       messageClass: 'border-l pl-3',
     }),
-    AmplifyAuthenticatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
