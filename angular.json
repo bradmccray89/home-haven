@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "home-haven:build:production"
+              "buildTarget": "home-haven:build:production"
             },
             "development": {
-              "browserTarget": "home-haven:build:development"
+              "buildTarget": "home-haven:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "home-haven:build"
+            "buildTarget": "home-haven:build"
           }
         },
         "test": {
