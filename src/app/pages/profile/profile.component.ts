@@ -18,13 +18,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const userId = localStorage.getItem('uid');
     if (!userId) return;
-    // this.subscriptions.push(
-    //   this.userService.getUserProfile(userId).subscribe((profile) => {
-    //     console.log(profile);
-    //     this.userProfile = profile;
-    //     this.profileForm = this.setProfileForm();
-    //   })
-    // );
   }
 
   ngOnDestroy(): void {

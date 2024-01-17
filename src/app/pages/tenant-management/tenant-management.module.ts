@@ -7,6 +7,9 @@ import { TenantDetailsComponent } from 'src/app/components/tenant-details/tenant
 import { AddTenantComponent } from 'src/app/components/add-tenant/add-tenant.component';
 import { TenantProfileComponent } from 'src/app/components/tenant-profile/tenant-profile.component';
 import { TenantPaymentsComponent } from '../../components/tenant-payments/tenant-payments.component';
+import { TenantLeasesComponent } from 'src/app/components/tenant-leases/tenant-leases.component';
+import { TenantMaintenanceComponent } from 'src/app/components/tenant-maintenance/tenant-maintenance.component';
+import { TenantDocumentsComponent } from 'src/app/components/tenant-documents/tenant-documents.component';
 
 @NgModule({
   imports: [CommonModule, TenantManagementRoutingModule, SharedModule],
@@ -16,6 +19,9 @@ import { TenantPaymentsComponent } from '../../components/tenant-payments/tenant
     AddTenantComponent,
     TenantProfileComponent,
     TenantPaymentsComponent,
+    TenantLeasesComponent,
+    TenantMaintenanceComponent,
+    TenantDocumentsComponent,
   ],
 })
 export class TenantManagementModule {}

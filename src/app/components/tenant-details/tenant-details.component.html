@@ -31,16 +31,34 @@
           </ng-template>
         </mat-tab>
         <mat-tab label="Payments">
-          <div class="w-full h-full p-4">Payments Content</div>
+          <ng-template matTabContent>
+            <div class="p-4">
+              <app-tenant-payments [tenant]="tenant"></app-tenant-payments>
+            </div>
+          </ng-template>
         </mat-tab>
         <mat-tab label="Leases">
-          <div class="w-full h-full p-4">Leases Content</div>
+          <ng-template matTabContent>
+            <div class="p-4">
+              <app-tenant-leases [tenant]="tenant"></app-tenant-leases>
+            </div>
+          </ng-template>
         </mat-tab>
         <mat-tab label="Maintenance">
-          <div class="w-full h-full p-4">Maintenance Content</div>
+          <ng-template matTabContent>
+            <div class="p-4">
+              <app-tenant-maintenance
+                [tenant]="tenant"
+              ></app-tenant-maintenance>
+            </div>
+          </ng-template>
         </mat-tab>
         <mat-tab label="Documents">
-          <div class="w-full h-full p-4">Documents Content</div>
+          <ng-template matTabContent>
+            <div class="p-4">
+              <app-tenant-documents [tenant]="tenant"></app-tenant-documents>
+            </div>
+          </ng-template>
         </mat-tab>
       </mat-tab-group>
     </div>

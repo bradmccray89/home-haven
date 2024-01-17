@@ -19,7 +19,6 @@ export class TenantProfileComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    console.log(this.tenant);
     this.tenantProfileForm = this.formBuilder.group({
       name: new FormControl(this.tenant.name, [Validators.required]),
       email: new FormControl(this.tenant.email, [Validators.required]),
