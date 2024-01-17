@@ -1,5 +1,5 @@
 import { fadeFromLeft } from './../../animations/fade';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Routes } from '@angular/router';
 import { User } from 'src/app/shared/models/user.model';
 
@@ -15,73 +15,71 @@ interface NavItem {
   styleUrls: ['./sidebar.component.scss'],
   animations: [fadeFromLeft],
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
   @Input() currentUserProfile: User | undefined;
   @Input() links: Routes | undefined;
   navItems: NavItem[] = [
     {
       name: 'Dashboard',
       icon: 'bootstrapSpeedometer',
-      route: '/dashboard',
+      route: 'dashboard',
     },
     {
       name: 'Properties',
       icon: 'bootstrapHouses',
-      route: '/properties',
+      route: 'properties',
     },
     {
       name: 'Tenants',
       icon: 'bootstrapPeople',
-      route: '/tenants',
+      route: 'tenants',
     },
     {
       name: 'Leases',
       icon: 'bootstrapClipboard',
-      route: '/leases',
+      route: 'leases',
     },
     {
       name: 'Rent Management',
       icon: 'bootstrapCurrencyDollar',
-      route: '/rent-management',
+      route: 'rent-management',
     },
     {
       name: 'Maintenance',
       icon: 'bootstrapWrench',
-      route: '/maintenance',
+      route: 'maintenance',
     },
     {
       name: 'Financials',
       icon: 'bootstrapBarChart',
-      route: '/financials',
+      route: 'financials',
     },
     {
       name: 'Reports',
       icon: 'bootstrapFileEarmarkBarGraph',
-      route: '/reports',
+      route: 'reports',
     },
     {
       name: 'Documents',
       icon: 'bootstrapFolder',
-      route: '/documents',
+      route: 'documents',
     },
     {
       name: 'Communications',
       icon: 'bootstrapChatRight',
-      route: '/communications',
+      route: 'communications',
     },
     {
       name: 'Settings',
       icon: 'bootstrapGear',
-      route: '/settings',
+      route: 'settings',
     },
     {
       name: 'Help/Support',
       icon: 'bootstrapQuestionCircle',
-      route: '/help',
+      route: 'help',
     },
   ];
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

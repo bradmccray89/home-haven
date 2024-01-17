@@ -65,6 +65,7 @@ export class HomeNavComponent implements OnInit, OnDestroy {
     this.titleService.setTitle('HomeHaven');
   }
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
     // const uid = localStorage.getItem('uid');
     // if (uid) {

@@ -1,5 +1,5 @@
-import { fadeFromBottom } from './../../animations/fade';
-import { ThemeService } from './../../services/theme.service';
+import { fadeFromBottom } from '../../animations/fade';
+import { ThemeService } from '../../services/theme.service';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         .then((attributes) => {
           if (attributes) {
             this.toastr.success('Already signed in as ' + attributes.email);
-            this.router.navigate(['/']);
+            this.router.navigate(['/app']);
           }
         })
         .catch((error) => {
@@ -69,13 +69,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       );
       this.authService.isSignedIn.next(isSignedIn);
       if (isSignedIn && nextStep.signInStep === 'DONE') {
-        this.router.navigate(['/']);
+        this.router.navigate(['/app']);
       }
     } catch (error: any) {
       if (error.toString().includes('UserAlreadyAuthenticatedException')) {
         this.toastr.error('You are already signed in');
         this.authService.isSignedIn.next(true);
-        this.router.navigate(['/']);
+        this.router.navigate(['/app']);
       } else {
         this.toastr.error(error.message);
       }

@@ -2,17 +2,17 @@ export class Profile {
   id: string;
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt?: Date;
 
   constructor(data: any = {}) {
     this.id = data.id || '';
     this.name = data.name || '';
     this.email = data.email || '';
-    this.phone = data.phone || '';
+    this.phone = data.phone || null;
     this.createdAt = data.createdAt || new Date();
-    this.updatedAt = data.updatedAt || new Date();
+    this.updatedAt = data.updatedAt || null;
   }
 }
 
@@ -47,17 +47,17 @@ export class TenantProfile extends Profile {
 
 export class UserProfile extends Profile {
   username: string;
-  lastLogin: Date;
+  lastLogin?: Date;
   preferences: { [key: string]: any };
-  profilePicture: string;
-  bio: string;
+  profilePicture?: string;
+  bio?: string;
 
   constructor(data: any = {}) {
     super(data);
     this.username = data.username || '';
-    this.lastLogin = data.lastLogin || new Date();
+    this.lastLogin = data.lastLogin || null;
     this.preferences = data.preferences || {};
-    this.profilePicture = data.profilePicture || '';
+    this.profilePicture = data.profilePicture || null;
     this.bio = data.bio || '';
   }
 }

@@ -7,14 +7,15 @@ import {
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { signUp } from 'aws-amplify/auth';
+import { fadeFromBottom } from 'src/app/animations/fade';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
+  animations: [fadeFromBottom],
 })
 export class SignupComponent {
-  @Output() closeSignup: EventEmitter<any> = new EventEmitter();
   public email = new FormControl('', [Validators.required, Validators.email]);
   public password = new FormControl('', [Validators.required]);
   public confirmPassword = new FormControl('', [Validators.required]);
@@ -74,10 +75,6 @@ export class SignupComponent {
     //         break;
     //     }
     //   });
-  }
-
-  close() {
-    this.closeSignup.emit();
   }
 
   togglePassword() {

@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { fadeFromBottom } from 'src/app/animations/fade';
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
+  animations: [fadeFromBottom],
 })
 export class ForgotPasswordComponent {
-  @Output() closeForgotPassword: EventEmitter<any> = new EventEmitter();
-  @Input() showForgotPassword: boolean = false;
   public email = new FormControl('', [Validators.required, Validators.email]);
   public forgotPasswordForm = new FormGroup({
     email: this.email,
@@ -38,9 +38,5 @@ export class ForgotPasswordComponent {
     //         break;
     //     }
     //   });
-  }
-
-  close() {
-    this.closeForgotPassword.emit();
   }
 }

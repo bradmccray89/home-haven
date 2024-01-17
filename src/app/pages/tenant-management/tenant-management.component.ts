@@ -265,10 +265,10 @@ export class TenantManagementComponent implements AfterViewInit {
   }
 
   addTenant() {
-    this.router.navigate(['/tenants', 'add']);
+    this.router.navigate(['/app/tenants', 'add']);
   }
 
   selectTenant(tenant: Tenant) {
-    this.router.navigate(['/tenants', tenant.id]);
+    this.router.navigate(['/app/tenants', tenant.id]);
   }
 }
