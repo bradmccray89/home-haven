@@ -1,3 +1,4 @@
+import { UserProfile } from 'src/app/shared/models/profile.model';
 import { Subscription } from 'rxjs';
 import { User } from '../../shared/models/user.model';
 import { Router, Routes } from '@angular/router';
@@ -15,7 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HomeComponent implements OnInit, OnDestroy {
   public sidebarOpen = true;
   public links: Routes = [];
-  public currentUserProfile: User = new User();
+  public currentUserProfile: UserProfile = new UserProfile();
   public subscriptions: Subscription[] = [];
   public dropdownOpen = false;
 
@@ -28,14 +29,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    if (!this.authService.isSignedIn.value) {
+      this.router.navigate(['/login']);
+    }
     this.userService
       .fetchUserAttributes()
       .then((result) => {
-        console.log(result);
+        const userProfile = {
+          email: result.email,
+          phone: result.phone_number,
+          name: result.name,
+          username: result.preferred_username,
+        };
+        this.currentUserProfile = new UserProfile(userProfile);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(JSON.stringify(error));
         this.toastr.error(error.message);
+        if (error.name === 'UserUnAuthenticatedException') {
+          this.router.navigate(['/login']);
+        }
       });
   }
 

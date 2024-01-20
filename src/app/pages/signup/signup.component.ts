@@ -1,13 +1,16 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { signUp } from 'aws-amplify/auth';
+import {
+  type ConfirmSignUpInput,
+  confirmSignUp,
+  signUp,
+} from 'aws-amplify/auth';
 import { fadeFromBottom } from 'src/app/animations/fade';
+import { UserProfile } from 'src/app/shared/models/profile.model';
+import { matchValidator } from 'src/app/shared/helpers/form-validators';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,80 +19,74 @@ import { fadeFromBottom } from 'src/app/animations/fade';
   animations: [fadeFromBottom],
 })
 export class SignupComponent {
-  public email = new FormControl('', [Validators.required, Validators.email]);
-  public password = new FormControl('', [Validators.required]);
-  public confirmPassword = new FormControl('', [Validators.required]);
-  public signupForm: FormGroup;
+  public signUpProfile: UserProfile = new UserProfile();
+  public signUpForm: FormGroup;
   public showPassword: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private toastr: ToastrService) {
-    this.signupForm = this.formBuilder.group(
-      {
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required]],
-        confirmPassword: ['', [Validators.required]],
-      },
-      { validators: [this.passwordMatchValidator] }
-    );
+  constructor(
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService,
+    private router: Router,
+    private authService: AuthService
+  ) {
+    this.signUpForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      phone: [''],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          matchValidator('confirmPassword', true),
+        ],
+      ],
+      confirmPassword: ['', [Validators.required, matchValidator('password')]],
+    });
+
+    // TODO: Remove this
+    this.signUpForm.patchValue({
+      email: 'bradmccray89@gmail.com',
+      name: 'Brandon McCray',
+      username: 'bradmccray89',
+      phone: '7579953444',
+      password: '#Testing!things098',
+      confirmPassword: '#Testing!things098',
+    });
   }
 
   async signup() {
     try {
-      if (this.signupForm.invalid)
+      if (this.signUpForm.invalid) {
         throw new Error('Please fill out all fields');
-      const { email, password } = this.signupForm.value;
+      }
+      if (this.authService.isSignedIn.value) {
+        await this.authService.signOut();
+      }
+      const { email, password } = this.signUpForm.value;
       const username = email;
 
-      const result = await signUp({
+      const attributes = {
+        email: email,
+        phone_number: '+1' + this.signUpForm.value?.phone,
+        preferred_username: this.signUpForm.value.username,
+        name: this.signUpForm.value.name,
+      };
+
+      const { isSignUpComplete, userId, nextStep } = await signUp({
         username,
         password,
-        options: { userAttributes: { email }, autoSignIn: true },
+        options: { userAttributes: attributes, autoSignIn: true },
       });
+
+      this.authService.handleSignUpNextStep(nextStep.signUpStep, username);
     } catch (error: any) {
       this.toastr.error(error.message);
     }
-    // this.auth
-    //   .createUserWithEmailAndPassword(
-    //     this.signupForm.value.email,
-    //     this.signupForm.value.password
-    //   )
-    //   .then((response) => {
-    //     if (response.user) {
-    //       this.toastr.success('Account created for ' + response.user.email);
-    //     }
-    //     this.close();
-    //   })
-    //   .catch((error) => {
-    //     switch (error.code) {
-    //       case 'auth/email-already-in-use':
-    //         this.toastr.error('Email already in use');
-    //         break;
-    //       case 'auth/invalid-email':
-    //         this.toastr.error('Invalid email');
-    //         break;
-    //       case 'auth/weak-password':
-    //         this.toastr.error('Weak password');
-    //         break;
-    //       default:
-    //         this.toastr.error('Something went wrong');
-    //         break;
-    //     }
-    //   });
   }
 
   togglePassword() {
     this.showPassword = !this.showPassword;
-  }
-
-  passwordMatchValidator() {
-    return (formGroup: FormGroup) => {
-      const password = formGroup.get('password')?.value;
-      const confirmPassword = formGroup.get('confirmPassword')?.value;
-      if (password !== null && confirmPassword !== null) {
-        return password === confirmPassword ? null : { mismatch: true };
-      } else {
-        return null;
-      }
-    };
   }
 }

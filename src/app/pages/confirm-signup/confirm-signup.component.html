@@ -1,0 +1,43 @@
+<div
+  class="h-full min-h-fit w-full md:w-[800px] md:max-w-[800px] md:bg-white/75 md:dark:bg-slate-800/75 backdrop-blur-md md:rounded-xl flex flex-col justify-between items-center overflow-x-hidden p-12 pb-32 md:pb-12 transition-colors duration-500 ease-in-out"
+  @fadeFromBottom
+>
+  <div
+    class="z-20 flex flex-col items-center justify-between w-full h-full gap-8"
+  >
+    <span class="text-4xl font-bold text-blue-400">Verify Account</span>
+    <span class="text-lg text-center">
+      Please enter the verification code sent to your email address.
+    </span>
+    <form
+      class="min-w-[220px] w-[95%] max-w-[350px] flex flex-col gap-y-9"
+      [formGroup]="confirmSignUpForm"
+    >
+      <div class="relative">
+        <input
+          id="code"
+          name="code"
+          formControlName="code"
+          type="text"
+          class="input-field"
+        />
+      </div>
+      <button
+        class="w-full p-2 text-white bg-blue-500 rounded-lg cursor-pointer hover:bg-blue-600 disabled:hover:bg-blue-400 outline-offset-2"
+        type="submit"
+        [disabled]="confirmSignUpForm.value.code?.length !== 6"
+        (click)="handleSignUpConfirmation(confirmSignUpForm.value.code)"
+      >
+        Verify Account
+      </button>
+    </form>
+    <div class="flex items-center justify-center w-full">
+      <button
+        class="px-3 py-1 text-blue-400 rounded-md hover:underline active:bg-gray-200"
+        [routerLink]="['/login']"
+      >
+        Back to Sign In
+      </button>
+    </div>
+  </div>
+</div>

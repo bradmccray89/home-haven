@@ -13,7 +13,12 @@
     },
     "categories": {
       "auth": {
-        "homehavend14e5d5b": {}
+        "homehaven4bc16053": {
+          "userPoolId": "us-east-1_hjHa36F9J",
+          "userPoolName": "homehaven-dev",
+          "webClientId": "6a21pb46dd8028lsnu4cqtdhlj",
+          "nativeClientId": "6a21pb46dd8028lsnu4cqtdhlj"
+        }
       }
     }
   }

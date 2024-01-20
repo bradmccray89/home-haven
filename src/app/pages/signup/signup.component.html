@@ -1,31 +1,45 @@
 <div
-  class="h-full md:h-[500px] min-h-fit w-full md:w-[800px] md:max-w-[800px] md:bg-white/75 md:dark:bg-slate-800/75 backdrop-blur-md md:rounded-xl flex flex-col justify-between items-center overflow-x-hidden p-12 pb-32 md:pb-12 transition-colors duration-500 ease-in-out"
+  class="h-full min-h-fit w-full md:w-[800px] md:max-w-[800px] md:bg-white/75 md:dark:bg-slate-800/75 backdrop-blur-md md:rounded-xl flex flex-col justify-between items-center overflow-x-hidden p-12 pb-32 md:pb-12 transition-colors duration-500 ease-in-out"
   @fadeFromBottom
 >
-  <div class="z-20 flex flex-col items-center justify-between w-full h-full">
+  <div
+    class="z-20 flex flex-col items-center justify-between w-full h-full gap-8"
+  >
     <span class="text-4xl font-bold text-blue-400">Sign Up</span>
-    <!-- <button
-      class="absolute items-center justify-center hidden top-4 right-6 md:flex"
-      [routerLink]="['/login']"
-    >
-      <ng-icon
-        name="heroXMark"
-        size="1.5rem"
-        strokeWidth="0.175rem"
-        class="flex items-center justify-center h-8 text-gray-500 rounded-full aspect-square hover:text-gray-400"
-      ></ng-icon>
-    </button> -->
     <form
-      class="min-w-[220px] w-[95%] max-w-[350px] flex flex-col gap-y-8"
-      [formGroup]="signupForm"
+      class="min-w-[220px] w-[95%] max-w-[350px] flex flex-col gap-y-9"
+      [formGroup]="signUpForm"
     >
       <div class="relative">
-        <label
-          for="email"
-          class="input-label"
-          *ngIf="signupForm.value.email?.length"
-        >
+        <label for="name" class="input-label">
+          Full Name
+          <span class="text-red-500">*</span>
+        </label>
+        <input
+          id="name"
+          name="name"
+          formControlName="name"
+          type="text"
+          class="input-field"
+        />
+      </div>
+      <div class="relative">
+        <label for="username" class="input-label">
+          Username
+          <span class="text-red-500">*</span>
+        </label>
+        <input
+          id="username"
+          name="username"
+          formControlName="username"
+          type="text"
+          class="input-field"
+        />
+      </div>
+      <div class="relative">
+        <label for="email" class="input-label">
           Email
+          <span class="text-red-500">*</span>
         </label>
         <input
           id="email"
@@ -33,16 +47,27 @@
           formControlName="email"
           type="text"
           class="input-field"
-          placeholder="Email"
         />
       </div>
       <div class="relative">
-        <label
-          for="password"
-          class="input-label"
-          *ngIf="signupForm.value.password?.length"
-        >
+        <label for="phone" class="input-label"
+          >Phone Number
+          <span class="text-red-500">*</span>
+        </label>
+        <input
+          id="phone"
+          name="phone"
+          formControlName="phone"
+          type="text"
+          class="input-field"
+          mask="(000) 000-0000"
+          prefix="+1"
+        />
+      </div>
+      <div class="relative">
+        <label for="password" class="input-label">
           Password
+          <span class="text-red-500">*</span>
         </label>
         <input
           id="password"
@@ -50,11 +75,10 @@
           formControlName="password"
           [type]="showPassword ? 'text' : 'password'"
           class="input-field"
-          placeholder="Password"
         />
         <div
           class="absolute text-black transition-colors duration-500 ease-in-out cursor-pointer right-2 top-2 md:-right-7 md:top-2 dark:text-white"
-          *ngIf="signupForm.value.password.length > 0"
+          *ngIf="signUpForm.value.password.length > 0"
           (click)="togglePassword()"
         >
           <ng-icon
@@ -64,12 +88,9 @@
         </div>
       </div>
       <div class="relative">
-        <label
-          for="confirm"
-          class="input-label"
-          *ngIf="signupForm.value.confirmPassword?.length"
-        >
+        <label for="confirm" class="input-label">
           Confirm Password
+          <span class="text-red-500">*</span>
         </label>
         <input
           id="confirm"
@@ -77,13 +98,25 @@
           formControlName="confirmPassword"
           type="password"
           class="input-field"
-          placeholder="Confirm Password"
+          [ngStyle]="{
+            'border-color': signUpForm.controls['confirmPassword'].hasError(
+              'matching'
+            )
+              ? 'red'
+              : 'inherit'
+          }"
         />
+        <span
+          class="absolute text-red-500 left-2 md:-bottom-6"
+          *ngIf="signUpForm.controls['confirmPassword'].hasError('matching')"
+        >
+          Passwords do not match
+        </span>
       </div>
       <button
         class="w-full p-2 text-white bg-blue-400 rounded-lg hover:bg-blue-500 active:bg-blue-600 disabled:hover:bg-blue-400 outline-offset-2"
         type="submit"
-        [disabled]="!signupForm.valid"
+        [disabled]="!signUpForm.valid"
         (click)="signup()"
       >
         Create Account
@@ -91,7 +124,7 @@
     </form>
     <div class="flex items-center justify-center w-full">
       <button
-        class="px-3 py-1 text-blue-400 rounded-md hover:ring-2 active:bg-gray-200"
+        class="px-3 py-1 text-blue-400 rounded-md hover:underline active:bg-gray-200"
         [routerLink]="['/login']"
       >
         Back to Sign In

@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (this.authService.isSignedIn.value) {
+    if (this.authService.checkForAuthenticatedUser()) {
       this.userService
         .fetchUserAttributes()
         .then((attributes) => {
@@ -67,51 +67,25 @@ export class LoginComponent implements OnInit, OnDestroy {
         username,
         password
       );
-      this.authService.isSignedIn.next(isSignedIn);
-      if (isSignedIn && nextStep.signInStep === 'DONE') {
-        this.router.navigate(['/app']);
+      if (isSignedIn) {
+        this.authService.handleSignInNextStep(nextStep.signInStep, username);
       }
     } catch (error: any) {
       if (error.toString().includes('UserAlreadyAuthenticatedException')) {
         this.toastr.error('You are already signed in');
-        this.authService.isSignedIn.next(true);
-        this.router.navigate(['/app']);
+        this.authService.handleSignInNextStep('DONE');
       } else {
         this.toastr.error(error.message);
       }
     }
   }
 
-  signUp() {
-    this.showSignup = true;
-    this.titleService.setTitle('Signup | HomeHaven');
-  }
-
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
 
-  closeSignup() {
-    this.close();
-    this.showSignup = false;
-    this.clearForm();
-  }
-
-  forgotPassword() {
-    this.showForgotPassword = true;
-    this.titleService.setTitle('Forgot Password | HomeHaven');
-  }
-
-  closeForgotPassword() {
-    this.close();
-    this.showForgotPassword = false;
-    this.clearForm();
-  }
-
   close() {
     this.titleService.setTitle('Login | HomeHaven');
-    this.showSignup = false;
-    this.showForgotPassword = false;
     this.clearForm();
   }
 

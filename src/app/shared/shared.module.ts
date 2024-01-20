@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificationDropdownComponent } from '../components/notification-dropdown/notification-dropdown.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 //Icon Imports
@@ -71,6 +72,7 @@ const icons = {
     MatPaginatorModule,
     MatSortModule,
     MatTabsModule,
+    MatInputModule,
   ],
   exports: [
     DropdownComponent,
@@ -86,6 +88,7 @@ const icons = {
     MatPaginatorModule,
     MatSortModule,
     MatTabsModule,
+    MatInputModule,
   ],
   declarations: [DropdownComponent, NotificationDropdownComponent],
   providers: [provideNgxMask()],

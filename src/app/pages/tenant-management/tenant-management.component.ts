@@ -19,7 +19,7 @@ export class TenantManagementComponent implements AfterViewInit {
   tenantList: Tenant[] = [];
   displayedColumns: string[] = [
     'name',
-    'property',
+    'address',
     'leaseStartDate',
     'leaseEndDate',
     'rentAmount',

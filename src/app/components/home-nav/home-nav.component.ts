@@ -17,6 +17,7 @@ import { Title } from '@angular/platform-browser';
 import { DropdownData } from 'src/app/shared/models/dropdown.model';
 import { Notification } from 'src/app/shared/models/notification.model';
 import { ToastrService } from 'ngx-toastr';
+import { UserProfile } from 'src/app/shared/models/profile.model';
 
 @Component({
   selector: 'app-home-nav',
@@ -26,7 +27,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomeNavComponent implements OnInit, OnDestroy {
   @Input() sidebarOpen = true;
-  @Input() currentUserProfile: User = new User();
+  @Input() currentUserProfile: UserProfile = new UserProfile();
   @Output() toggleSidebarEmit = new EventEmitter<boolean>(true);
   public subscriptions: Subscription[] = [];
   public isDarkTheme: Observable<boolean> = this.themeService.isDarkTheme;
