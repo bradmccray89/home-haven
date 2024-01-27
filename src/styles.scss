@@ -39,8 +39,8 @@ $home-haven-theme: mat.define-light-theme(
 
 html,
 body {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 body {
@@ -74,6 +74,10 @@ body {
   dark:text-gray-100
   text-sm
   transition-colors;
+}
+
+.input-container {
+  @apply relative flex flex-col mb-4;
 }
 
 .dropdown-item {
@@ -142,9 +146,17 @@ input:checked + .slider:before {
 }
 
 .page-header {
-  @apply flex flex-row items-center justify-center w-full h-16;
+  @apply flex flex-row items-center w-full h-16;
 }
 
 .page-content {
   @apply flex flex-col items-center justify-start gap-4 w-full h-full overflow-y-auto;
+}
+
+.primary-button {
+  @apply px-5 py-2 text-white bg-blue-500 hover:bg-blue-400 rounded-md whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-500 ease-in-out;
+}
+
+.secondary-button {
+  @apply px-5 py-2 text-gray-700 bg-white hover:bg-gray-100 rounded-md whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-500 ease-in-out;
 }

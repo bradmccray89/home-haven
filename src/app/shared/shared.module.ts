@@ -32,6 +32,7 @@ import {
   bootstrapGear,
   bootstrapQuestionCircle,
   bootstrapX,
+  bootstrapArrowLeft,
 } from '@ng-icons/bootstrap-icons';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -57,6 +58,7 @@ const icons = {
   bootstrapGear,
   bootstrapQuestionCircle,
   bootstrapX,
+  bootstrapArrowLeft,
 };
 
 @NgModule({

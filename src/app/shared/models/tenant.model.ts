@@ -24,8 +24,8 @@ export class Tenant {
     this.city = data.city || '';
     this.state = data.state || '';
     this.zip = data.zip || '';
-    this.leaseStartDate = data.leaseStartDate || new Date();
-    this.leaseEndDate = data.leaseEndDate || new Date();
+    this.leaseStartDate = data.leaseStartDate || null;
+    this.leaseEndDate = data.leaseEndDate || null;
     this.rentAmount = data.rentAmount || 0;
     this.paymentStatus = data.paymentStatus || '';
     this.profilePicture = data.profilePicture || '';

@@ -1,0 +1,97 @@
+<div class="page-container" @fadeInOut>
+  <div class="justify-center page-header">
+    <h3 class="text-xl">New Tenant</h3>
+  </div>
+  <div class="page-content">
+    <form
+      [formGroup]="newTenantForm"
+      class="flex flex-col items-center justify-start gap-8 mt-4 w-[400px]"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="input-container">
+        <label for="name" class="input-label">Name</label>
+        <input
+          type="text"
+          id="name"
+          class="input-field"
+          formControlName="name"
+          placeholder="Enter full name"
+        />
+      </div>
+      <div class="input-container">
+        <label for="email" class="input-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="input-field"
+          formControlName="email"
+          placeholder="Enter email"
+        />
+      </div>
+      <div class="input-container">
+        <label for="phone" class="input-label">Phone</label>
+        <input
+          type="text"
+          id="phone"
+          class="input-field"
+          formControlName="phone"
+          placeholder="Enter phone number"
+          mask="(000) 000-0000"
+          prefix="+1"
+        />
+      </div>
+      <div class="input-container">
+        <label for="address" class="input-label">Address</label>
+        <input
+          type="text"
+          id="address"
+          class="input-field"
+          formControlName="address"
+          placeholder="Enter address"
+        />
+      </div>
+      <div class="input-container">
+        <label for="city" class="input-label">City</label>
+        <input
+          type="text"
+          id="city"
+          class="input-field"
+          formControlName="city"
+          placeholder="Enter city"
+        />
+      </div>
+      <div class="input-container">
+        <label for="state" class="input-label">State</label>
+        <input
+          type="text"
+          id="state"
+          class="input-field"
+          formControlName="state"
+          placeholder="Enter state"
+        />
+      </div>
+      <div class="input-container">
+        <label for="zip" class="input-label">Zip</label>
+        <input
+          type="text"
+          id="zip"
+          class="input-field"
+          formControlName="zip"
+          placeholder="Enter zip"
+        />
+      </div>
+      <div class="action-container">
+        <button type="button" class="secondary-button" (click)="onCancel()">
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="primary-button"
+          [disabled]="newTenantForm.invalid"
+        >
+          Add Tenant
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

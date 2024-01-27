@@ -19,6 +19,7 @@ const routes: Routes = [
           import('../../pages/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
+        title: 'Dashboard | HomeHaven',
       },
       {
         path: 'profile',
@@ -26,6 +27,7 @@ const routes: Routes = [
           import('../../pages/profile/profile.module').then(
             (m) => m.ProfileModule
           ),
+        title: 'Profile | HomeHaven',
       },
       {
         path: 'settings',
@@ -33,6 +35,7 @@ const routes: Routes = [
           import('../../pages/settings/settings.module').then(
             (m) => m.SettingsModule
           ),
+        title: 'Settings | HomeHaven',
       },
       {
         path: 'tenants',
@@ -40,6 +43,7 @@ const routes: Routes = [
           import('../../pages/tenant-management/tenant-management.module').then(
             (m) => m.TenantManagementModule
           ),
+        title: 'Tenants | HomeHaven',
       },
       {
         path: 'properties',
@@ -47,6 +51,7 @@ const routes: Routes = [
           import(
             '../../pages/property-management/property-management.module'
           ).then((m) => m.PropertyManagementModule),
+        title: 'Properties | HomeHaven',
       },
       {
         path: 'leases',
@@ -54,6 +59,7 @@ const routes: Routes = [
           import('../../pages/lease-management/lease-management.module').then(
             (m) => m.LeaseManagementModule
           ),
+        title: 'Leases | HomeHaven',
       },
       {
         path: 'rent-management',
@@ -61,6 +67,7 @@ const routes: Routes = [
           import('../../pages/rent-management/rent-management.module').then(
             (m) => m.RentManagementModule
           ),
+        title: 'Rent Management | HomeHaven',
       },
       {
         path: 'maintenance',
@@ -68,6 +75,7 @@ const routes: Routes = [
           import('../../pages/maintenance/maintenance.module').then(
             (m) => m.MaintenanceModule
           ),
+        title: 'Maintenance | HomeHaven',
       },
       {
         path: 'financials',
@@ -75,6 +83,7 @@ const routes: Routes = [
           import('../../pages/financials/financials.module').then(
             (m) => m.FinancialsModule
           ),
+        title: 'Financials | HomeHaven',
       },
       {
         path: 'reports',
@@ -82,6 +91,7 @@ const routes: Routes = [
           import('../../pages/reports/reports.module').then(
             (m) => m.ReportsModule
           ),
+        title: 'Reports | HomeHaven',
       },
       {
         path: 'documents',
@@ -89,6 +99,7 @@ const routes: Routes = [
           import('../../pages/documents/documents.module').then(
             (m) => m.DocumentsModule
           ),
+        title: 'Documents | HomeHaven',
       },
       {
         path: 'communications',
@@ -96,6 +107,7 @@ const routes: Routes = [
           import('../../pages/communications/communications.module').then(
             (m) => m.CommunicationsModule
           ),
+        title: 'Communications | HomeHaven',
       },
       {
         path: 'help',
@@ -103,6 +115,7 @@ const routes: Routes = [
           import('../../pages/support/support.module').then(
             (m) => m.SupportModule
           ),
+        title: 'Help | HomeHaven',
       },
     ],
   },
