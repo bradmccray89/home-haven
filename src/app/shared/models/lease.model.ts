@@ -1,6 +1,6 @@
 export class Lease {
   id: number;
-  unitId: number;
+  propertyId: number;
   tenantId: number;
   startDate: Date;
   endDate: Date;
@@ -15,7 +15,7 @@ export class Lease {
 
   constructor(lease: any = {}) {
     this.id = lease.id || 0;
-    this.unitId = lease.unitId || 0;
+    this.propertyId = lease.propertyId || 0;
     this.tenantId = lease.tenantId || 0;
     this.startDate = lease.startDate || new Date();
     this.endDate = lease.endDate || new Date();
